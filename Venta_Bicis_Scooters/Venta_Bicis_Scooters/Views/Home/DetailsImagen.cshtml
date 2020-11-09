@@ -1,0 +1,43 @@
+﻿@model Venta_Bicis_Scooters.Models.TB_IMAGENES
+
+@{
+    ViewBag.Title = "DetailsImagen";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Detalle de : @Model.cod_imagen</h2>
+
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cod_imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cod_imagen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descrp_imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descrp_imagen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.url_imagen)
+        </dt>
+
+        <dd>
+            <img width="100" src="@Url.Action("getImage","Home",new { id=Model.cod_imagen })" />
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditImagen", new { id = Model.cod_imagen }, new { @class = "btn btn-outline-success" }) |
+    @Html.ActionLink("Retornar a la Lista", "ListarImagenes", new { }, new { @class = "btn btn-outline-primary" })
+</p>

@@ -1,0 +1,122 @@
+﻿@model Venta_Bicis_Scooters.ENTITY.Accesorio
+
+@{
+    ViewBag.Title = "DetailsAccesorio";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Detalles del Accesorio: @Model.ID </h2>
+
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.codMarca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codMarca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Peso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Peso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Material)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Material)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duracion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duracion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dimension)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dimension)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.codImg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codImg)
+        </dd>
+
+    </dl>
+
+    <p>
+        @Html.ActionLink("Edit", "EditAccesorio", new { id = Model.ID }, new { @class = "btn btn-outline-success" }) |
+        @Html.ActionLink("Retornar a la Lista", "ListarAccesorio", new { }, new { @class = "btn btn-outline-primary" })
+    </p>
+</div>
+
+<style>
+
+    .my-custom-scrollbar {
+        position: relative;
+        height: 700px;
+        overflow: auto;
+    }
+
+    .table-wrapper-scroll-y {
+        display: block;
+    }
+</style>

@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Venta_Bicis_Scooters.ENTITY.Cliente>
+
+@{
+    ViewBag.Title = "ConsultarCliente";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Consultar Cliente</h2>
+
+
+@using (Html.BeginForm())
+{
+    <table class="table table-bordered ">
+        <tr>
+            <td>
+                <strong>Ingresar Dni del Cliente</strong>
+            </td>
+            <td>
+                <input type="text" name="dni" id="dni" value="@ViewBag.dni" />
+            </td>
+        </tr>
+
+
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="Consultar" class="btn btn-outline-success" />
+            </td>
+        </tr>
+
+    </table>
+}
+
+
+
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <table class="table table-bordered table-striped mb-0">
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.DNI)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Correo)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Celular)
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.DNI)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Correo)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Celular)
+                </td>
+
+
+            </tr>
+        }
+
+    </table>
+</div>
+
+<style>
+
+    .my-custom-scrollbar {
+        position: relative;
+        height: 500px;
+        overflow: auto;
+    }
+
+    .table-wrapper-scroll-y {
+        display: block;
+    }
+</style>

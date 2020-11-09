@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+@using (Html.BeginForm("IniciarSesion", "Home"))
+{
+
+    <div class="form-36-mian section-gap">
+
+        <div class="wrapper">
+
+            <div class="form-inner-cont">
+
+                <div class="imgcontainer">
+                    <p class="text-center text-muted"><i class="zmdi zmdi-account-circle zmdi-hc-5x"></i></p>
+                </div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <form action="#" method="post" class="signin-form">
+
+                    <div class="form-input">
+                        <span class="fa fa-envelope-o" aria-hidden="true"></span>
+                        <input type="text" name="user" placeholder="Username" required />
+                    </div>
+
+                    <div class="form-input">
+                        <span class="fa fa-key" aria-hidden="true"></span>
+                        <input type="password" name="pass" placeholder="Password" required />
+                    </div>
+                    @{
+                        if (@TempData["Error"] != null)
+                        {
+                            <span>@TempData["Error"]</span>
+                        }
+                    }
+                    <div class="login-remember d-grid">
+                        <label class="check-remaind">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <p class="remember">Recuérdame</p>
+                        </label>
+                        <button class="btn theme-button" value="IniciarSesion">Login</button>
+                    </div>
+
+                    <div class="new-signup">
+                        <a href="#reload" class="signuplink">¿Se te olvidó tu contraseña?</a>
+                    </div>
+
+                </form>
+
+
+            </div>
+
+
+            <!-- copyright -->
+            <div class="copy-right">
+                <p>
+                    © 2020 Active Login Form. Todos los derechos reservados | Design
+
+                </p>
+            </div>
+            <!-- //copyright -->
+
+
+        </div>
+    </div>
+}
+
+
+

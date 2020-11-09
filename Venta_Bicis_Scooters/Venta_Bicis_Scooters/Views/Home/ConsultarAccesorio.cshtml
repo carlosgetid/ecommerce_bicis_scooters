@@ -1,0 +1,132 @@
+﻿@model IEnumerable<Venta_Bicis_Scooters.ENTITY.Accesorio>
+
+@{
+    ViewBag.Title = "ConsultarAccesorio";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Consultar Accesorio</h2>
+
+@using (Html.BeginForm())
+{
+    <table class="table table-bordered ">
+        <tr>
+            <td>
+                <strong>Ingresar Nombre de Accesorio</strong>
+            </td>
+            <td>
+                <input type="text" name="descripcion" id="descripcion" value="@ViewBag.descripcion" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <strong>Seleccionar Marca a consultar</strong>
+            </td>
+            <td>
+                @Html.DropDownList("cod", (SelectList)ViewBag.marca, new { @class = "form-control" })
+
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="Consultar" class="btn btn-outline-success" />
+            </td>
+        </tr>
+
+    </table>
+}
+
+
+
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <table class="table table-bordered table-striped mb-0">
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Peso)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Material)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Duracion)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Dimension)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Peso)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Material)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Duracion)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Dimension)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Stock)
+                </td>
+
+
+            </tr>
+        }
+
+    </table>
+</div>
+
+
+<style>
+
+    .my-custom-scrollbar {
+        position: relative;
+        height: 500px;
+        overflow: auto;
+    }
+
+    .table-wrapper-scroll-y {
+        display: block;
+    }
+</style>

@@ -1,0 +1,76 @@
+﻿@model Venta_Bicis_Scooters.Models.TB_IMAGENES
+
+@{
+    ViewBag.Title = "EditImagen";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Editar Imagen : @Model.cod_imagen</h2>
+
+
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
+    @using (Html.BeginForm("EditImagen", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.cod_imagen, htmlAttributes: new { @class = "control-label col-md-1 text-black-50" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.cod_imagen, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.cod_imagen, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.descrp_imagen, htmlAttributes: new { @class = "control-label col-md-1 text-black-50" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.descrp_imagen, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.descrp_imagen, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.url_imagen, htmlAttributes: new { @class = "control-label col-md-1 text-black-50" })
+                <div class="col-md-10">
+
+                    <img width="100" src="@Url.Action("getImage","Home",new { id=Model.cod_imagen })" />
+                    <input type="file" name="imageload" style="opacity:1;position:relative;" />
+                    @Html.ValidationMessageFor(model => model.url_imagen, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Retornar a la Lista", "ListarImagenes", new { }, new { @class = "btn btn-outline-primary" })
+    </div>
+</div>
+
+<style>
+
+    .my-custom-scrollbar {
+        position: relative;
+        height: 600px;
+        overflow: auto;
+    }
+
+    .table-wrapper-scroll-y {
+        display: block;
+    }
+</style>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

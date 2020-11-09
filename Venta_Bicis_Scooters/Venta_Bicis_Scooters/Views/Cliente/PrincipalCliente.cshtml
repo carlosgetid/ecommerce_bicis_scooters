@@ -1,0 +1,254 @@
+﻿
+@{
+    ViewBag.Title = "PrincipalCliente";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+
+
+<header>
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="~/Cliente/PrincipalCliente">Inicio <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="~/Cliente/TodasBicicletas">Bicicletas<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="~/Cliente/TodosScooter">Scooters<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="~/Cliente/TodosAccesorios">Accesorios<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Contactanos<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="~/Cliente/Login">Login<span class="sr-only">(current)</span></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+
+</header>
+
+<br/>
+
+<section>
+
+    @*CARUSEL SUPERIOR*@
+    <article>
+
+        <div class="row">
+            <!-- Carousel -->
+            <div id="carouselExampleIndicators" class="carousel slide col-md-12 h-100" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner h-100">
+                    <div class="carousel-item active h-100">
+                        <img class="d-block w-100 h-100" src="~/Content/images/creamos.jpg" alt="First slide">
+                    </div>
+                    <div class="carousel-item h-100">
+                        <img class="d-block w-100 h-100" src="~/Content/images/bici.jpg" alt="Second slide">
+                    </div>
+                    <div class="carousel-item h-100">
+                        <img class="d-block w-100 h-100" src="~/Content/images/accesorios.jpg" alt="Third slide">
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+
+    </article>
+
+
+    <br />
+    <br />
+
+    @*METODO DE PAGO*@
+    <article>
+
+        <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-6">
+                <nav class="navbar navbar-expand-lg navbar-white navbar-light" style="border:2px solid black;">
+                    
+                    <div class="collapse navbar-collapse justify-content-center  ">
+                        <ul class="navbar-nav " id="prueba">
+                            <li class="nav-item  active">
+                                <a class="nav-link" href="#"> Metodo de Pago con : <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#"> Visa<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#"> Pago Efectivo<span class="sr-only">(current)</span></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </nav>
+            </div>
+            <div class="col-sm-3">
+            </div>
+        </div>
+
+
+    </article>
+
+    <br />
+    <br />
+
+    @*IMAGENES*@
+    <article>
+        <div>
+            <img id="imgizquierdo" src="~/Content/images/portada_bici.jpg" />
+
+            <img id="imgcentro" src="~/Content/images/portado_scooter.jpg" />
+            <img id="imgderecho" src="~/Content/images/portada_accesorio.jpg" />
+        </div>
+
+        <div>
+            <p id="izquierdo">Bicicleta</p>
+            <p id="derecho">Accesorio</p>
+            <p id="centrado">Scooter</p>
+            
+        </div>
+
+    </article>
+
+    <br />
+    <br />
+
+
+    @*TEXTO*@
+    <article>
+      
+    </article>
+
+
+    <br />
+    <br />
+
+    @*CARUSEL INFERIOR*@
+    <article>
+        <!-- Carrusel de abajo -->
+        <div class="productos-recomendados contenedor-abajo">
+
+            <div class="contenedor-abajo-titulo-controles">
+                <h3>Ofertas de la semana</h3>
+                <div class="indicadores">
+                </div>
+            </div>
+
+            <div class="contenedor-abajo-principal">
+
+                <button role="button" id="flecha-izquierda" class="flecha-izquierda">
+                    <i class="fas fa-angle-left"></i>
+                </button>
+
+
+                <div class="contenedor-abajo-carrusel-abajo">
+                    <div class="carrusel-abajo">
+
+                        <div class="producto-abajo">
+                            <a href="#">
+                                <img src="~/Content/images/1.jpg" alt="" />
+
+                            </a>
+                        </div>
+                        <div class="producto-abajo">
+                            <a href="#">
+                                <img src="~/Content/images/I.jpg" alt="" />
+
+                            </a>
+                        </div>
+                        <div class="producto-abajo">
+                            <a href="#">
+                                <img src="~/Content/images/3.jpg" alt="" />
+
+                            </a>
+                        </div>
+                        <div class="producto-abajo">
+                            <a href="#">
+                                <img src="~/Content/images/II.jpg" alt="" />
+
+                            </a>
+                        </div>
+                        <div class="producto-abajo">
+                            <a href="#">
+                                <img src="~/Content/images/5.jpg" alt="" />
+
+                            </a>
+                        </div>
+                        <div class="producto-abajo">
+                            <a href="#">
+                                <img src="~/Content/images/III.jpg" alt="" />
+
+                            </a>
+                        </div>
+                        <div class="producto-abajo">
+                            <a href="#">
+                                <img src="~/Content/images/7.jpg" alt="" />
+
+                            </a>
+                        </div>
+                        <div class="producto-abajo">
+                            <a href="#">
+                                <img src="~/Content/images/IV.jpg" alt="" />
+                            </a>
+                        </div>
+                        <div class="producto-abajo">
+                            <a href="#">
+                                <img src="~/Content/images/2.jpg" alt="" />
+                            </a>
+                        </div>
+                        <div class="producto-abajo">
+                            <a href="#">
+                                <img src="~/Content/images/V.jpg" alt="" />
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <button role="button" id="flecha-derecha" class="flecha-derecha">
+                    <i class="fas fa-angle-right"></i>
+                </button>
+
+            </div>
+        </div>
+    </article>
+
+
+
+
+
+
+</section>
+
