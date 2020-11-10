@@ -95,8 +95,7 @@ cod_marca int not null,
 color_accesorio varchar(200) not null,
 peso_accesorio varchar(200) not null,
 material_accesorio varchar(200) not null,
-duracion_accesorio varchar(200)  null,
-dimension_accesorio varchar(200)  null,
+dimension_accesorio varchar(200)  not null,
 precio_accesorio decimal not null,
 stock_accesorio int not null,
 cod_imagen int not null
@@ -304,17 +303,16 @@ go
 --INSERT ACCESORIO (10 A 15)
 
 
-INSERT TB_ACCESORIO VALUES('Lámpara luz frontal 3 LED Ultra brillante',11,'Negro','0.1 KG','PVC','Nuevo',null,55,5,12)
 
-INSERT TB_ACCESORIO VALUES('Set de inflador de bolsillo con manómetro',1,'Negro','95 gr','Plástico','','21 cm de alto y 3 cm de ancho',69.90,2,13)
+INSERT TB_ACCESORIO VALUES('Set de inflador de bolsillo con manómetro',1,'Negro','95 gr','Plástico','21 cm de alto y 3 cm de ancho',69.90,2,13)
 
-INSERT TB_ACCESORIO VALUES('Set de herramientas múltiples',2,'Negro','500 gr','Acero','','9 x 4.5 x 2.5 cm',39.90,2,14)
+INSERT TB_ACCESORIO VALUES('Set de herramientas múltiples',2,'Negro','500 gr','Acero','9 x 4.5 x 2.5 cm',39.90,2,14)
 
-INSERT TB_ACCESORIO VALUES('Soporte para celular de plástico',3,'Negro y Rojo','120 gr','Plástico','','20 cm de alto y 15 cm de ancho',29.90,2,15)
+INSERT TB_ACCESORIO VALUES('Soporte para celular de plástico',3,'Negro y Rojo','120 gr','Plástico','20 cm de alto y 15 cm de ancho',29.90,2,15)
 
-INSERT TB_ACCESORIO VALUES('Asiento ajustable para scooter eléctrico ',4,'Negro','2.8 kg','Cuerina Alumnio y Hierro','','16.5 x 27 cm',189.90,2,16)
+INSERT TB_ACCESORIO VALUES('Asiento ajustable para scooter eléctrico ',4,'Negro','2.8 kg','Cuerina Alumnio y Hierro','16.5 x 27 cm',189.90,2,16)
 
-INSERT TB_ACCESORIO VALUES('Luces Bolt combo led',5,'Negro','30 gr','Aluminio de alta calidad y plástico de nylon de primera clase','20 horas','21 cm de alto y 3 cm de ancho',69.90,2,17)
+INSERT TB_ACCESORIO VALUES('Luces Bolt combo led',5,'Negro','30 gr','Aluminio de alta calidad y plástico de nylon de primera clase','21 cm de alto y 3 cm de ancho',69.90,2,17)
 
 
 
@@ -452,7 +450,7 @@ go
 create proc usp_Scooter_Listar
 as
 begin
-	select cod_scooter,descrp_scooter,s.cod_marca,m.descrp_marca,aro_scooter,color_scooter,velocidad_scooter,motor_scooter,freno_scooter,material_scooter,precio_scooter,stock_scooter
+	select cod_scooter,descrp_scooter,m.descrp_marca,aro_scooter,color_scooter,velocidad_scooter,motor_scooter,freno_scooter,material_scooter,precio_scooter,stock_scooter
 	from TB_SCOOTER s 
 	join TB_MARCA m on s.cod_marca=m.cod_marca
 end
@@ -471,12 +469,34 @@ begin
 end
 go
 
+
+
+create proc usp_Scooter_Buscar
+@id int 
+as
+begin
+	select cod_scooter,descrp_scooter,cod_marca,aro_scooter,color_scooter,velocidad_scooter,motor_scooter,freno_scooter,material_scooter,precio_scooter,stock_scooter,cod_imagen
+	from TB_SCOOTER 
+	where cod_scooter=@id
+end
+go
+
+
+
+
 /* Creado por Brandon */
 create proc usp_Scooter_Insertar
-@Descrp_Scooter varchar(350), @Cod_Marca int, @Aro_Scooter varchar(200), 
-@Color_Scooter varchar(200), @Velocidad_Scooter varchar(200), 
-@Motor_Scooter varchar(200), @Freno_Scooter varchar(200), @Material_Scooter varchar(200),
-@Precio_Scooter decimal(18,0), @Stock_Scooter int, @Cod_Imagen int
+@Descrp_Scooter varchar(350), 
+@Cod_Marca int,
+@Aro_Scooter varchar(200), 
+@Color_Scooter varchar(200), 
+@Velocidad_Scooter varchar(200), 
+@Motor_Scooter varchar(200),
+@Freno_Scooter varchar(200), 
+@Material_Scooter varchar(200),
+@Precio_Scooter decimal, 
+@Stock_Scooter int,
+@Cod_Imagen int
 as
 begin
 	insert TB_SCOOTER(descrp_scooter,cod_marca,aro_scooter,color_scooter,velocidad_scooter,motor_scooter,freno_scooter,material_scooter,precio_scooter,stock_scooter,cod_imagen)
@@ -485,21 +505,42 @@ end
 go
 
 
-select * from TB_SCOOTER
-go
+
+
+
 
 create proc usp_Scooter_Actualizar
-@Cod_Scooter int, @Descrp_Scooter varchar(350), @Cod_Marca int, @Aro_Scooter varchar(200), 
-@Color_Scooter varchar(200), @Velocidad_Scooter varchar(200), 
-@Motor_Scooter varchar(200), @Freno_Scooter varchar(200), @Material_Scooter varchar(200),
-@Precio_Scooter decimal(18,0), @Stock_Scooter int, @Cod_Imagen int
+@Cod_Scooter int ,
+@Descrp_Scooter varchar(350), 
+@Cod_Marca int,
+@Aro_Scooter varchar(200), 
+@Color_Scooter varchar(200), 
+@Velocidad_Scooter varchar(200), 
+@Motor_Scooter varchar(200),
+@Freno_Scooter varchar(200), 
+@Material_Scooter varchar(200),
+@Precio_Scooter decimal, 
+@Stock_Scooter int,
+@Cod_Imagen int
 as
 begin
-	update TB_SCOOTER set descrp_scooter=@Descrp_Scooter, cod_marca=@Cod_Marca, aro_scooter=@Aro_Scooter, color_scooter=@Color_Scooter, velocidad_scooter=@Velocidad_Scooter,
-	motor_scooter=@Motor_Scooter, freno_scooter=@Freno_Scooter, material_scooter=@Material_Scooter, precio_scooter=@Precio_Scooter, stock_scooter=@Stock_Scooter, cod_imagen=@Cod_Imagen
+	update TB_SCOOTER 
+	set descrp_scooter=@Descrp_Scooter, 
+		cod_marca=@Cod_Marca,
+		aro_scooter=@Aro_Scooter,
+		color_scooter=@Color_Scooter,
+		velocidad_scooter=@Velocidad_Scooter,
+		motor_scooter=@Motor_Scooter, 
+		freno_scooter=@Freno_Scooter,
+		material_scooter=@Material_Scooter, 
+		precio_scooter=@Precio_Scooter, 
+		stock_scooter=@Stock_Scooter,
+		cod_imagen=@Cod_Imagen
 	where cod_scooter=@Cod_Scooter
 end
 go
+
+
 
 
 
@@ -511,6 +552,10 @@ begin
 	from TB_MARCA 
 end
 go
+
+
+
+
 
 
 -----------------------------------------------------------------------------
@@ -526,6 +571,10 @@ begin
 	where username_trabajador = @username and password_trabajador = @password
 end
 go
+
+
+
+
 
 -----------------------------------------------------------------------------
 /*** TABLA BICICLETA *****/
@@ -602,56 +651,94 @@ go
 
 
 
+
+
+
+
 -----------------------------------------------------------------------------
 /*** TABLA ACCESORIO *****/
 
 create proc usp_Accesorio_Listar
 as
 begin
-	select cod_accesorio,descrp_accesorio,m.descrp_marca,color_accesorio,peso_accesorio,material_accesorio,duracion_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio
+	select cod_accesorio,descrp_accesorio,m.descrp_marca,color_accesorio,peso_accesorio,material_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio
 	from TB_ACCESORIO a
 	join TB_MARCA m on a.cod_marca=m.cod_marca
 end
 go
 
-create proc usp_Accesorio_Insertar
-@desc varchar(350),@codmarca int , @color varchar(200), @peso varchar(200),@material varchar(200),@duracion varchar(200),@dimension varchar(200),@precio decimal,@stock int,@codimg int
-as
-begin
-	insert TB_ACCESORIO(descrp_accesorio,cod_marca,color_accesorio,peso_accesorio,material_accesorio,duracion_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio,cod_imagen) 
-	values (@desc,@codmarca,@color,@peso, @material, @duracion, @dimension,@precio,@stock,@codimg)
-end
-go
 
-
-create proc usp_Accesorio_Actualizar
-@Id int, @desc varchar(350),@codmarca int , @color varchar(200), @peso varchar(200),@material varchar(200),@duracion varchar(200),@dimension varchar(200),@precio decimal,@stock int,@codimg int
-as
-begin
-	update TB_ACCESORIO
-	set descrp_accesorio=@desc,
-		cod_marca=@codmarca,
-		color_accesorio=@color,
-		peso_accesorio=@peso,
-		material_accesorio=@material,
-		duracion_accesorio=@duracion,
-		dimension_accesorio=@dimension,
-		precio_accesorio=@precio,
-		stock_accesorio=@stock,
-		cod_imagen=@codimg
-	where cod_accesorio=@Id
-end
-go
 
 create proc usp_Accesorio_Buscar
 @Id int
 as
 begin
-	select cod_accesorio,descrp_accesorio,cod_marca,color_accesorio,peso_accesorio,material_accesorio,duracion_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio,cod_imagen
+	select cod_accesorio,descrp_accesorio,cod_marca,color_accesorio,peso_accesorio,material_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio,cod_imagen
 	from TB_ACCESORIO 
 	where cod_accesorio=@Id
 end
 go
+
+
+
+
+
+create proc usp_Accesorio_Insertar
+@desc_accesorio varchar(350),
+@codmarca int , 
+@color_accesorio varchar(200),
+@peso_accesorio varchar(200),
+@material_accesorio varchar(200),
+@dimension_accesorio varchar(200),
+@precio_accesorio decimal,
+@stock_accesorio int,
+@codimg int
+as
+begin
+	insert TB_ACCESORIO(descrp_accesorio,cod_marca,color_accesorio,peso_accesorio,material_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio,cod_imagen) 
+	values (@desc_accesorio,@codmarca,@color_accesorio,@peso_accesorio, @material_accesorio,@dimension_accesorio,@precio_accesorio,@stock_accesorio,@codimg)
+end
+go
+
+
+
+
+
+
+
+create proc usp_Accesorio_Actualizar
+@Cod_accesorio int,
+@desc_accesorio varchar(350),
+@codmarca int , 
+@color_accesorio varchar(200),
+@peso_accesorio varchar(200),
+@material_accesorio varchar(200),
+@dimension_accesorio varchar(200),
+@precio_accesorio decimal,
+@stock_accesorio int,
+@codimg int
+as
+begin
+	update TB_ACCESORIO
+	set descrp_accesorio=@desc_accesorio,
+		cod_marca=@codmarca,
+		color_accesorio=@color_accesorio,
+		peso_accesorio=@peso_accesorio,
+		material_accesorio=@material_accesorio,
+		dimension_accesorio=@dimension_accesorio,
+		precio_accesorio=@precio_accesorio,
+		stock_accesorio=@stock_accesorio,
+		cod_imagen=@codimg
+	where cod_accesorio=@Cod_accesorio
+end
+go
+
+
+
+
+
+
+
 
 
 create proc usp_Accesorio_Consultar
@@ -659,7 +746,7 @@ create proc usp_Accesorio_Consultar
 @cod_marca int 
 as
 begin
-	select cod_accesorio,descrp_accesorio,m.descrp_marca,color_accesorio,peso_accesorio,material_accesorio,duracion_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio
+	select cod_accesorio,descrp_accesorio,m.descrp_marca,color_accesorio,peso_accesorio,material_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio
 	from TB_ACCESORIO a
 	join TB_MARCA m on a.cod_marca=m.cod_marca
 	where @descp_accesorio= '' or UPPER(descrp_accesorio)=UPPER(@descp_accesorio) and a.cod_marca=@cod_marca 

@@ -207,7 +207,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccesorioDao.cs" />
+    <Compile Include="Models\AccesorioCrudDao.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BicicletaCrudDao.cs" />
     <Compile Include="Models\ClienteCrudDao.cs" />
@@ -2202,20 +2202,12 @@
     <Content Include="Views\Cliente\TodosAccesorios.cshtml" />
     <Content Include="Views\Home\PrincipalAdmin.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Home\ListarScooter.cshtml" />
     <Content Include="Views\Home\ConsultarScooter.cshtml" />
-    <Content Include="Views\Home\ActualizarScooter.cshtml" />
-    <Content Include="Views\Home\CreateScooter.cshtml" />
     <Content Include="Views\Home\ListarBicicleta.cshtml" />
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\ConsultarBicicleta.cshtml" />
-    <Content Include="Views\Home\ListarAccesorio.cshtml" />
-    <Content Include="Views\Home\CreateAccesorio.cshtml" />
-    <Content Include="Views\Home\EditAccesorio.cshtml" />
-    <Content Include="Views\Home\DetailsAccesorio.cshtml" />
-    <Content Include="Views\Home\ConsultarAccesorio.cshtml" />
     <Content Include="Views\Home\ListarImagenes.cshtml" />
     <Content Include="Views\Home\CreateImagen.cshtml" />
     <Content Include="Views\Home\EditImagen.cshtml" />
@@ -2224,6 +2216,15 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutCliente.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Home\ListarScooter.cshtml" />
+    <Content Include="Views\Home\CreateScooter.cshtml" />
+    <Content Include="Views\Home\EditScooter.cshtml" />
+    <Content Include="Views\Home\DetailsScooter.cshtml" />
+    <Content Include="Views\Home\ListarAccesorio.cshtml" />
+    <Content Include="Views\Home\CreateAccesorio.cshtml" />
+    <Content Include="Views\Home\EditAccesorio.cshtml" />
+    <Content Include="Views\Home\DetailsAccesorio.cshtml" />
+    <Content Include="Views\Home\ConsultarAccesorio.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

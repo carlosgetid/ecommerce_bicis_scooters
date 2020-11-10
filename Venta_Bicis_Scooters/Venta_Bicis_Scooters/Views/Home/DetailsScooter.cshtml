@@ -1,16 +1,15 @@
-﻿@model Venta_Bicis_Scooters.ENTITY.Accesorio
+﻿@model Venta_Bicis_Scooters.ENTITY.Scooter
 
 @{
-    ViewBag.Title = "DetailsAccesorio";
+    ViewBag.Title = "DetailsScooter";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Detalle del Accesorio: @Model.ID</h2>
+<h2>Detalle del Scooter: @Model.ID</h2>
 
 <div class="table-wrapper-scroll-y my-custom-scrollbar">
-
+  
     <dl class="dl-horizontal">
-
         <dt>
             @Html.DisplayNameFor(model => model.ID)
         </dt>
@@ -18,6 +17,7 @@
         <dd>
             @Html.DisplayFor(model => model.ID)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Descripcion)
         </dt>
@@ -26,13 +26,20 @@
             @Html.DisplayFor(model => model.Descripcion)
         </dd>
 
-
         <dt>
             @Html.DisplayNameFor(model => model.codMarca)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.codMarca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aro)
         </dd>
 
         <dt>
@@ -44,11 +51,27 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Peso)
+            @Html.DisplayNameFor(model => model.Velocidad)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Peso)
+            @Html.DisplayFor(model => model.Velocidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Motor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Motor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Freno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Freno)
         </dd>
 
         <dt>
@@ -57,16 +80,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.Material)
-        </dd>
-
-     
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Dimension)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Dimension)
         </dd>
 
         <dt>
@@ -86,6 +99,7 @@
         </dd>
 
 
+
         <dt>
             @Html.DisplayNameFor(model => model.codImagen)
         </dt>
@@ -95,23 +109,8 @@
         </dd>
 
     </dl>
-
-    <p>
-        @Html.ActionLink("Edit", "EditAccesorio", new { id = Model.ID }, new { @class = "btn btn-outline-success" }) |
-        @Html.ActionLink("Retornar a la Lista", "ListarAccesorio", new { }, new { @class = "btn btn-outline-primary" })
-    </p>
 </div>
-
-
-<style>
-
-    .my-custom-scrollbar {
-        position: relative;
-        height: 700px;
-        overflow: auto;
-    }
-
-    .table-wrapper-scroll-y {
-        display: block;
-    }
-</style>
+<p>
+    @Html.ActionLink("Edit", "EditScooter", new { id = Model.ID }, new { @class = "btn btn-outline-success" }) |
+    @Html.ActionLink("Retornar a la Lista", "ListarScooter", new { }, new { @class = "btn btn-outline-primary" })
+</p>

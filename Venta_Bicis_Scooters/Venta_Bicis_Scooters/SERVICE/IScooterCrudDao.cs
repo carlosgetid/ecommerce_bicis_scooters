@@ -10,7 +10,6 @@ namespace Venta_Bicis_Scooters.SERVICE
     {
         void InsertScooter(T e);
         void UpdateScooter(T e);
-        void DeleteScooter(T e);
         T BuscarScooter(int id);
 
 

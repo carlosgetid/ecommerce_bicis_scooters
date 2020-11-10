@@ -7,6 +7,7 @@
 
 <h2>Consultar Accesorio</h2>
 
+
 @using (Html.BeginForm())
 {
     <table class="table table-bordered ">
@@ -38,7 +39,7 @@
     </table>
 }
 
-
+<br />
 
 <div class="table-wrapper-scroll-y my-custom-scrollbar">
     <table class="table table-bordered table-striped mb-0">
@@ -61,9 +62,7 @@
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.Material)
             </th>
-            <th class="text-center">
-                @Html.DisplayNameFor(model => model.Duracion)
-            </th>
+            
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.Dimension)
             </th>
@@ -73,6 +72,7 @@
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.Stock)
             </th>
+
 
         </tr>
 
@@ -97,9 +97,7 @@
                 <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Material)
                 </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Duracion)
-                </td>
+               
                 <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Dimension)
                 </td>
@@ -116,6 +114,7 @@
 
     </table>
 </div>
+
 
 
 <style>

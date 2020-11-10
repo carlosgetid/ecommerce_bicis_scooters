@@ -5,65 +5,59 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Listado Accesorio</h2>
+<h2>Listado de  Accesorio</h2>
 
 <p>
     @Html.ActionLink("Nuevo Accesorio", "CreateAccesorio", null, new { @class = "btn btn-outline-success" })
 </p>
-
-
-
 <div class="table-wrapper-scroll-y my-custom-scrollbar">
     <table class="table table-bordered table-striped mb-0">
         <tr>
-            <th class="text-center">
+            <th  class="text-center">
                 @Html.DisplayNameFor(model => model.ID)
             </th>
-            <th class="text-center">
+            <th  class="text-center">
                 @Html.DisplayNameFor(model => model.Descripcion)
             </th>
-            <th class="text-center">
+            <th  class="text-center">
                 @Html.DisplayNameFor(model => model.Marca)
             </th>
-            <th class="text-center">
+            <th  class="text-center">
                 @Html.DisplayNameFor(model => model.Color)
             </th>
-            <th class="text-center">
+            <th  class="text-center">
                 @Html.DisplayNameFor(model => model.Peso)
             </th>
-            <th class="text-center">
+            <th  class="text-center">
                 @Html.DisplayNameFor(model => model.Material)
             </th>
-            <th class="text-center">
-                @Html.DisplayNameFor(model => model.Duracion)
-            </th>
-            <th class="text-center">
+           
+            <th  class="text-center">
                 @Html.DisplayNameFor(model => model.Dimension)
             </th>
-            <th class="text-center">
+            <th  class="text-center">
                 @Html.DisplayNameFor(model => model.Precio)
             </th>
-            <th class="text-center">
+            <th  class="text-center">
                 @Html.DisplayNameFor(model => model.Stock)
             </th>
-
+          
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
             <tr>
-
-                <td class="text-center">
+                <td  class="text-center">
                     @Html.DisplayFor(modelItem => item.ID)
                 </td>
-                <td class="text-center">
+                <td  class="text-center">
                     @Html.DisplayFor(modelItem => item.Descripcion)
                 </td>
-                <td class="text-center">
+                <td  class="text-center">
                     @Html.DisplayFor(modelItem => item.Marca)
                 </td>
-                <td class="text-center">
+                <td  class="text-center">
                     @Html.DisplayFor(modelItem => item.Color)
                 </td>
                 <td class="text-center">
@@ -72,9 +66,7 @@
                 <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Material)
                 </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Duracion)
-                </td>
+              
                 <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Dimension)
                 </td>
@@ -84,10 +76,10 @@
                 <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Stock)
                 </td>
-
+             
                 <td class="text-center">
                     @Html.ActionLink("Edit", "EditAccesorio", new { id = item.ID }, new { @class = "btn btn-outline-success" }) |
-                    @Html.ActionLink("Details", "DetailsAccesorio", new { id = item.ID }, new { @class = "btn btn-outline-primary" }) |
+                    @Html.ActionLink("Details", "DetailsAccesorio", new { id = item.ID }, new { @class = "btn btn-outline-primary" })
 
                 </td>
             </tr>
@@ -95,18 +87,3 @@
 
     </table>
 </div>
-
-
-
-<style>
-
-    .my-custom-scrollbar {
-        position: relative;
-        height: 600px;
-        overflow: auto;
-    }
-
-    .table-wrapper-scroll-y {
-        display: block;
-    }
-</style>

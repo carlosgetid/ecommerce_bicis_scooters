@@ -10,9 +10,8 @@
 <p>
     @Html.ActionLink("Nuevo Scooter", "CreateScooter", null, new { @class = "btn btn-outline-success" })
 </p>
-
 <div class="table-wrapper-scroll-y my-custom-scrollbar">
-    <table class="table  table-bordered table-striped mb-0 ">
+    <table class="table table-bordered table-striped mb-0">
         <tr>
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.ID)
@@ -89,9 +88,8 @@
                 </td>
 
                 <td class="text-center">
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-outline-success" }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-outline-primary" }) |
-
+                    @Html.ActionLink("Edit", "EditScooter", new { id = item.ID }, new { @class = "btn btn-outline-success" }) |
+                    @Html.ActionLink("Details", "DetailsScooter", new { id = item.ID }, new { @class = "btn btn-outline-primary" })
 
                 </td>
             </tr>
@@ -99,6 +97,7 @@
 
     </table>
 </div>
+
 
 
 <style>

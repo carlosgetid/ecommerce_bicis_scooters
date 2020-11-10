@@ -10,7 +10,7 @@ using Venta_Bicis_Scooters.SERVICE;
 
 namespace Venta_Bicis_Scooters.Models
 {
-    public class AccesorioDao : IAccesorioCrudDao<Accesorio>
+    public class AccesorioCrudDao : IAccesorioCrudDao<Accesorio>
     {
         public Accesorio BuscarAccesorio(int id)
         {
@@ -36,12 +36,11 @@ namespace Venta_Bicis_Scooters.Models
                         Color = dr["color_accesorio"].ToString(),
                         Peso = dr["peso_accesorio"].ToString(),
                         Material = dr["material_accesorio"].ToString(),
-                        Duracion = dr["duracion_accesorio"].ToString(),
+                  
                         Dimension = dr["dimension_accesorio"].ToString(),
                         Precio = Convert.ToDouble(dr["precio_accesorio"]),
                         Stock = Convert.ToInt32(dr["stock_accesorio"]),
-                        codImg = Convert.ToInt32(dr["cod_imagen"])
-
+                        codImagen = Convert.ToInt32(dr["cod_imagen"])
                     };
                 }
                 dr.Close();
@@ -63,9 +62,10 @@ namespace Venta_Bicis_Scooters.Models
                 SqlConnection cn = AccesoDato.getConnection();
                 SqlCommand cmd = new SqlCommand("usp_Accesorio_Consultar", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@cod_marca", cod);
+                
                 cmd.Parameters.AddWithValue("@descp_accesorio", descripcion);
-
+                cmd.Parameters.AddWithValue("@cod_marca", cod);
+                
 
                 cn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -79,7 +79,7 @@ namespace Venta_Bicis_Scooters.Models
                         Color = dr["color_accesorio"].ToString(),
                         Peso = dr["peso_accesorio"].ToString(),
                         Material = dr["material_accesorio"].ToString(),
-                        Duracion = dr["duracion_accesorio"].ToString(),
+                  
                         Dimension = dr["dimension_accesorio"].ToString(),
                         Precio = Convert.ToDouble(dr["precio_accesorio"]),
                         Stock = Convert.ToInt32(dr["stock_accesorio"])
@@ -97,11 +97,6 @@ namespace Venta_Bicis_Scooters.Models
             return lista;
         }
 
-        public void DeleteAccesorio(Accesorio e)
-        {
-            throw new NotImplementedException();
-        }
-
         public void InsertAccesorio(Accesorio e)
         {
             try
@@ -111,16 +106,16 @@ namespace Venta_Bicis_Scooters.Models
                 cmd.CommandType = CommandType.StoredProcedure;
 
 
-                cmd.Parameters.AddWithValue("@desc", e.Descripcion);
+                cmd.Parameters.AddWithValue("@desc_accesorio", e.Descripcion);
                 cmd.Parameters.AddWithValue("@codmarca", e.codMarca);
-                cmd.Parameters.AddWithValue("@color", e.Color);
-                cmd.Parameters.AddWithValue("@peso", e.Peso);
-                cmd.Parameters.AddWithValue("@material", e.Material);
-                cmd.Parameters.AddWithValue("@duracion", e.Duracion);
-                cmd.Parameters.AddWithValue("@dimension", e.Dimension);
-                cmd.Parameters.AddWithValue("@precio", e.Precio);
-                cmd.Parameters.AddWithValue("@stock", e.Stock);
-                cmd.Parameters.AddWithValue("@codimg", e.codImg);
+                cmd.Parameters.AddWithValue("@color_accesorio", e.Color);
+                cmd.Parameters.AddWithValue("@peso_accesorio", e.Peso);
+                cmd.Parameters.AddWithValue("@material_accesorio", e.Material) ;
+      
+                cmd.Parameters.AddWithValue("@dimension_accesorio", e.Dimension);
+                cmd.Parameters.AddWithValue("@precio_accesorio", e.Precio);
+                cmd.Parameters.AddWithValue("@stock_accesorio", e.Stock);
+                cmd.Parameters.AddWithValue("@codimg", e.codImagen);
 
                 cn.Open();
                 bool iresult = cmd.ExecuteNonQuery() == 1 ? true : false;
@@ -154,7 +149,7 @@ namespace Venta_Bicis_Scooters.Models
                         Color = dr["color_accesorio"].ToString(),
                         Peso = dr["peso_accesorio"].ToString(),
                         Material = dr["material_accesorio"].ToString(),
-                        Duracion = dr["duracion_accesorio"].ToString(),
+                  
                         Dimension = dr["dimension_accesorio"].ToString(),
                         Precio = Convert.ToDouble(dr["precio_accesorio"]),
                         Stock = Convert.ToInt32(dr["stock_accesorio"])
@@ -177,20 +172,22 @@ namespace Venta_Bicis_Scooters.Models
             try
             {
                 SqlConnection cn = AccesoDato.getConnection();
-                SqlCommand cmd = new SqlCommand("usp_Accesorio_Insertar", cn);
+                SqlCommand cmd = new SqlCommand("usp_Accesorio_Actualizar", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@Id", e.ID);
-                cmd.Parameters.AddWithValue("@desc", e.Descripcion);
+              
+                cmd.Parameters.AddWithValue("@desc_accesorio", e.Descripcion);
                 cmd.Parameters.AddWithValue("@codmarca", e.codMarca);
-                cmd.Parameters.AddWithValue("@color", e.Color);
-                cmd.Parameters.AddWithValue("@peso", e.Peso);
-                cmd.Parameters.AddWithValue("@material", e.Material);
-                cmd.Parameters.AddWithValue("@duracion", e.Duracion);
-                cmd.Parameters.AddWithValue("@dimension", e.Dimension);
-                cmd.Parameters.AddWithValue("@precio", e.Precio);
-                cmd.Parameters.AddWithValue("@stock", e.Stock);
-                cmd.Parameters.AddWithValue("@codimg", e.codImg);
+                cmd.Parameters.AddWithValue("@color_accesorio", e.Color);
+                cmd.Parameters.AddWithValue("@peso_accesorio", e.Peso);
+                cmd.Parameters.AddWithValue("@material_accesorio", e.Material);
+    
+                cmd.Parameters.AddWithValue("@dimension_accesorio", e.Dimension);
+                cmd.Parameters.AddWithValue("@precio_accesorio", e.Precio);
+                cmd.Parameters.AddWithValue("@stock_accesorio", e.Stock);
+                cmd.Parameters.AddWithValue("@codimg", e.codImagen);
+                cmd.Parameters.AddWithValue("@Cod_accesorio", e.ID);
+
 
                 cn.Open();
                 bool iresult = cmd.ExecuteNonQuery() == 1 ? true : false;
@@ -200,10 +197,7 @@ namespace Venta_Bicis_Scooters.Models
             {
                 throw ex;
             }
+
         }
-
-
-
-
     }
 }

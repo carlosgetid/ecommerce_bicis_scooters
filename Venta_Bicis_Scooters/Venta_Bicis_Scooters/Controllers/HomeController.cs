@@ -19,7 +19,7 @@ namespace Venta_Bicis_Scooters.Controllers
         MarcaDao marcadao = new MarcaDao();
         TrabajadorDao trabajadordao = new TrabajadorDao();
         BicicletaCrudDao bicicletadao = new BicicletaCrudDao();
-        AccesorioDao accesoriodao = new AccesorioDao();
+        AccesorioCrudDao accesoriodao = new AccesorioCrudDao();
         BD_VENTAS_BICICLETA_SCOOTEREntities1 db = new BD_VENTAS_BICICLETA_SCOOTEREntities1();
         ClienteCrudDao clientedao = new ClienteCrudDao();
         /*----------------------------------------------------------------------------------------------------------------*/
@@ -105,54 +105,148 @@ namespace Venta_Bicis_Scooters.Controllers
         }
 
 
-        public ActionResult ActualizarScooter()
-        {
-            if (Session["User"] != null)
-            {
-                ViewBag.Nombre = Session["FirstName"];
-                ViewBag.Apellido = Session["LastName"];
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
-        }
-
+        //INSERT
         public ActionResult CreateScooter()
         {
             if (Session["User"] != null)
             {
                 ViewBag.Nombre = Session["FirstName"];
                 ViewBag.Apellido = Session["LastName"];
+
+
+                ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+                ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen");
+
                 return View();
             }
             else
             {
                 return RedirectToAction("Login");
             }
-        }
 
+        }
         [HttpPost]
-        public ActionResult CreateScooter(Scooter scooter)
+        public ActionResult CreateScooter(Scooter emp)
         {
             if (Session["User"] != null)
             {
-                if (ModelState.IsValid)
-                {
-                    ViewBag.Nombre = Session["FirstName"];
-                    ViewBag.Apellido = Session["LastName"];
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
 
-                    scooterdao.InsertScooter(scooter);
+
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+                        ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen");
+
+                        emp.ID = emp.ID;
+                        scooterdao.InsertScooter(emp);
+                        return RedirectToAction("ListarScooter");
+                    }
+                    else
+                    {
+                        return RedirectToAction("ListarScooter");
+                    }
+
+                }
+                catch
+                {
                     return View();
                 }
-                return View();
+
             }
             else
             {
                 return RedirectToAction("Login");
             }
+
         }
+
+        //UPDATE
+        public ActionResult EditScooter(int id)
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+                Scooter emp = scooterdao.BuscarScooter(id);
+
+                ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca", emp.codMarca);
+                ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen", emp.codImagen);
+
+                return View(scooterdao.BuscarScooter(id));
+       
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+
+        }
+        [HttpPost]
+        public ActionResult EditScooter(Scooter emp)
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca", emp.codMarca);
+                        ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen", emp.codImagen);
+
+              
+                        scooterdao.UpdateScooter(emp);
+
+                        return RedirectToAction("ListarScooter");
+                    }
+                    else
+                    {
+                        return RedirectToAction("ListarScooter");
+                    }
+
+                }
+                catch
+                {
+                    return View();
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+
+
+
+        }
+
+
+        //DETALLES
+        public ActionResult DetailsScooter(int id)
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View(scooterdao.BuscarScooter(id));
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+
+        }
+
 
 
 
@@ -342,7 +436,11 @@ namespace Venta_Bicis_Scooters.Controllers
 
 
 
+
+
         /*---------------------------------------ACCESORIO-------------------------------*/
+
+
         public ActionResult ListarAccesorio()
         {
             if (Session["User"] != null)
@@ -350,6 +448,7 @@ namespace Venta_Bicis_Scooters.Controllers
                 ViewBag.Nombre = Session["FirstName"];
                 ViewBag.Apellido = Session["LastName"];
                 return View(accesoriodao.ListarAccesorio().ToList());
+                
             }
             else
             {
@@ -359,7 +458,6 @@ namespace Venta_Bicis_Scooters.Controllers
         }
 
 
-
         //INSERT
         public ActionResult CreateAccesorio()
         {
@@ -367,7 +465,6 @@ namespace Venta_Bicis_Scooters.Controllers
             {
                 ViewBag.Nombre = Session["FirstName"];
                 ViewBag.Apellido = Session["LastName"];
-
 
 
                 ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
@@ -394,12 +491,12 @@ namespace Venta_Bicis_Scooters.Controllers
                 {
                     if (ModelState.IsValid)
                     {
-
                         ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
                         ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen");
 
                         emp.ID = emp.ID;
                         accesoriodao.InsertAccesorio(emp);
+              
                         return RedirectToAction("ListarAccesorio");
                     }
                     else
@@ -422,8 +519,6 @@ namespace Venta_Bicis_Scooters.Controllers
         }
 
 
-
-
         //UPDATE
         public ActionResult EditAccesorio(int id)
         {
@@ -433,10 +528,11 @@ namespace Venta_Bicis_Scooters.Controllers
                 ViewBag.Apellido = Session["LastName"];
 
 
+             
                 Accesorio emp = accesoriodao.BuscarAccesorio(id);
 
                 ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca", emp.codMarca);
-                ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen", emp.codImg);
+                ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen", emp.codImagen);
 
                 return View(accesoriodao.BuscarAccesorio(id));
             }
@@ -461,10 +557,10 @@ namespace Venta_Bicis_Scooters.Controllers
                     if (ModelState.IsValid)
                     {
                         ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca", emp.codMarca);
-                        ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen", emp.codImg);
+                        ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen", emp.codImagen);
 
+                      
                         accesoriodao.UpdateAccesorio(emp);
-
 
                         return RedirectToAction("ListarAccesorio");
                     }
@@ -490,6 +586,7 @@ namespace Venta_Bicis_Scooters.Controllers
         }
 
 
+
         //DETALLES
         public ActionResult DetailsAccesorio(int id)
         {
@@ -508,6 +605,9 @@ namespace Venta_Bicis_Scooters.Controllers
         }
 
 
+
+
+
         public ActionResult ConsultarAccesorio(int cod = 0, string descripcion = null)
         {
             if (Session["User"] != null)
@@ -520,7 +620,9 @@ namespace Venta_Bicis_Scooters.Controllers
                 if (cod == 0) cod = 1;
                 ViewBag.descripcion = descripcion;
                 ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
-                return View(accesoriodao.ConsultaAccesorio(cod, descripcion));
+                return View(accesoriodao.ConsultaAccesorio(cod,descripcion));
+
+
             }
             else
             {
@@ -529,6 +631,16 @@ namespace Venta_Bicis_Scooters.Controllers
 
 
         }
+
+
+
+
+
+
+
+
+
+
 
 
         /*---------------------------------------IMAGENES-------------------------------*/

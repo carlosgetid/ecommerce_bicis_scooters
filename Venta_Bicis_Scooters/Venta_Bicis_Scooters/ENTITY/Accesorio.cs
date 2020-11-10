@@ -7,6 +7,7 @@ namespace Venta_Bicis_Scooters.ENTITY
 {
     public class Accesorio
     {
+    
         public int ID { get; set; }
         public string Descripcion { get; set; }
         public string Marca { get; set; }
@@ -16,7 +17,6 @@ namespace Venta_Bicis_Scooters.ENTITY
 
         public string Material { get; set; }
 
-        public string Duracion { get; set; }
         public string Dimension { get; set; }
 
 
@@ -24,6 +24,6 @@ namespace Venta_Bicis_Scooters.ENTITY
         public int Stock { get; set; }
 
         public int codMarca { get; set; }
-        public int codImg { get; set; }
+        public int codImagen { get; set; }
     }
 }

@@ -10,7 +10,6 @@ namespace Venta_Bicis_Scooters.SERVICE
     {
         void InsertAccesorio(T e);
         void UpdateAccesorio(T e);
-        void DeleteAccesorio(T e);
         T BuscarAccesorio(int id);
 
 
