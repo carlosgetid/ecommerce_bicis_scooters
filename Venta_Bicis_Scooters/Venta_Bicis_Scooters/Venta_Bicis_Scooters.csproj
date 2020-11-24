@@ -2266,6 +2266,8 @@
     <Content Include="Views\Producto\TodosScooter.cshtml" />
     <Content Include="Views\Producto\TodosAccesorios.cshtml" />
     <Content Include="Views\Producto\DetallesBicicletas.cshtml" />
+    <Content Include="Views\Producto\DetallesScooter.cshtml" />
+    <Content Include="Views\Producto\DetallesAccesorios.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

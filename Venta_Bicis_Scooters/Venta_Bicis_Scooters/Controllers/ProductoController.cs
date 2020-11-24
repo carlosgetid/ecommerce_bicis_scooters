@@ -16,6 +16,8 @@ namespace Venta_Bicis_Scooters.Controllers
 
         /*------------------------PRODUCTOS----------------------------*/
         
+
+        /*--BICICLETAS--*/
         public ActionResult TodasBicicletas()
         {
             ViewBag.Apellido = Session["LastName"];
@@ -29,6 +31,8 @@ namespace Venta_Bicis_Scooters.Controllers
             return View(bicicletadao.BuscarBicicleta(id));
         }
 
+
+        /*--SCOOTER--*/
         public ActionResult TodosScooter()
         {
             ViewBag.Apellido = Session["LastName"];
@@ -37,6 +41,15 @@ namespace Venta_Bicis_Scooters.Controllers
             return View(scooterdao.ListarScooter().ToList());
         }
 
+        public ActionResult DetallesScooter(int id)
+        {
+            return View(scooterdao.BuscarScooter(id));
+        }
+
+
+
+
+        /*--ACCESORIOS--*/
         public ActionResult TodosAccesorios()
         {
             ViewBag.Apellido = Session["LastName"];
@@ -44,6 +57,14 @@ namespace Venta_Bicis_Scooters.Controllers
             ViewBag.logout = Session["logout"];
             return View(accesoriodao.ListarAccesorio().ToList());
         }
+
+        public ActionResult DetallesAccesorios(int id)
+        {
+            return View(accesoriodao.BuscarAccesorio(id));
+        }
+
+
+
 
 
 

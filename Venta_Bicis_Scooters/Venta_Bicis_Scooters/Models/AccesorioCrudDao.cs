@@ -33,6 +33,7 @@ namespace Venta_Bicis_Scooters.Models
                         ID = Convert.ToInt32(dr["cod_accesorio"]),
                         Descripcion = dr["descrp_accesorio"].ToString(),
                         codMarca = Convert.ToInt32(dr["cod_marca"]),
+                        Marca = dr["descrp_marca"].ToString(),
                         Color = dr["color_accesorio"].ToString(),
                         Peso = dr["peso_accesorio"].ToString(),
                         Material = dr["material_accesorio"].ToString(),
@@ -40,7 +41,9 @@ namespace Venta_Bicis_Scooters.Models
                         Dimension = dr["dimension_accesorio"].ToString(),
                         Precio = Convert.ToDouble(dr["precio_accesorio"]),
                         Stock = Convert.ToInt32(dr["stock_accesorio"]),
-                        codImagen = Convert.ToInt32(dr["cod_imagen"])
+                        codImagen = Convert.ToInt32(dr["cod_imagen"]),
+                        Imagen= dr["url_imagen"].ToString()
+                        
                     };
                 }
                 dr.Close();

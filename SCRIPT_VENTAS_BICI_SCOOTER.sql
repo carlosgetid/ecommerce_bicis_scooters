@@ -523,8 +523,10 @@ create proc usp_Scooter_Buscar
 @id int 
 as
 begin
-	select cod_scooter,descrp_scooter,cod_marca,aro_scooter,color_scooter,velocidad_scooter,motor_scooter,freno_scooter,material_scooter,precio_scooter,stock_scooter,cod_imagen
-	from TB_SCOOTER 
+	select cod_scooter,descrp_scooter,s.cod_marca,m.descrp_marca,aro_scooter,color_scooter,velocidad_scooter,motor_scooter,freno_scooter,material_scooter,precio_scooter,stock_scooter,s.cod_imagen,i.url_imagen
+	from TB_SCOOTER s
+	join TB_MARCA m on s.cod_marca=m.cod_marca
+	join TB_IMAGENES i on s.cod_imagen=i.cod_imagen
 	where cod_scooter=@id
 end
 go
@@ -725,8 +727,10 @@ create proc usp_Accesorio_Buscar
 @Id int
 as
 begin
-	select cod_accesorio,descrp_accesorio,cod_marca,color_accesorio,peso_accesorio,material_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio,cod_imagen
-	from TB_ACCESORIO 
+	select cod_accesorio,descrp_accesorio,a.cod_marca,m.descrp_marca,color_accesorio,peso_accesorio,material_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio,a.cod_imagen,i.url_imagen
+	from TB_ACCESORIO a
+	join TB_MARCA m on a.cod_marca=m.cod_marca
+	join TB_IMAGENES i on a.cod_imagen=i.cod_imagen
 	where cod_accesorio=@Id
 end
 go
