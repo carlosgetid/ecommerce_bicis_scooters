@@ -152,8 +152,9 @@ namespace Venta_Bicis_Scooters.Models
                   
                         Dimension = dr["dimension_accesorio"].ToString(),
                         Precio = Convert.ToDouble(dr["precio_accesorio"]),
-                        Stock = Convert.ToInt32(dr["stock_accesorio"])
-
+                        Stock = Convert.ToInt32(dr["stock_accesorio"]),
+                        Imagen = dr["url_imagen"].ToString()
+                        
                     };
                     lista.Add(emp);
                 }

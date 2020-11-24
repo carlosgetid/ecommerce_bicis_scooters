@@ -33,13 +33,15 @@ namespace Venta_Bicis_Scooters.Models
                         ID = Convert.ToInt32(dr["cod_bicicleta"]),
                         Descripcion = dr["descrp_bicicleta"].ToString(),
                         codMarca = Convert.ToInt32(dr["cod_marca"]),
+                        Marca = dr["descrp_marca"].ToString(),
                         Aro = dr["aro_bicicleta"].ToString(),
                         Color = dr["color_bicicleta"].ToString(),
                         Freno = dr["freno_bicicleta"].ToString(),
                         Peso = dr["peso_bicicleta"].ToString(),
                         Precio = Convert.ToDouble(dr["precio_bicicleta"]),
                         Stock = Convert.ToInt32(dr["stock_bicicleta"]),
-                        codImg = Convert.ToInt32(dr["cod_imagen"])
+                        codImg = Convert.ToInt32(dr["cod_imagen"]),
+                        Imagen = dr["url_imagen"].ToString(),
                     };
                 }
                 dr.Close();
@@ -152,8 +154,9 @@ namespace Venta_Bicis_Scooters.Models
                         Freno = dr["freno_bicicleta"].ToString(),
                         Peso = dr["peso_bicicleta"].ToString(),
                         Precio = Convert.ToDouble(dr["precio_bicicleta"]),
-                        Stock = Convert.ToInt32(dr["stock_bicicleta"])
-
+                        Stock = Convert.ToInt32(dr["stock_bicicleta"]),
+                        Imagen =dr["url_imagen"].ToString()
+                        
                     };
                     lista.Add(emp);
                 }

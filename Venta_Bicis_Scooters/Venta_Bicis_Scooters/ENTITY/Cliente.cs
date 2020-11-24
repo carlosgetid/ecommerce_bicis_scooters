@@ -14,6 +14,7 @@ namespace Venta_Bicis_Scooters.ENTITY
         public string Correo { get; set; }
         public string Celular { get; set; }
 
-
+        public string paswoord { get; set; }
+        public string estado { get; set; }
     }
 }

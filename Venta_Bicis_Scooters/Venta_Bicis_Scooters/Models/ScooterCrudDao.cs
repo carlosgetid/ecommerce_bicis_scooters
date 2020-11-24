@@ -113,8 +113,8 @@ namespace Venta_Bicis_Scooters.Models
                         Freno = dr["freno_scooter"].ToString(),
                         Material = dr["material_scooter"].ToString(),
                         Precio = Convert.ToDouble(dr["precio_scooter"]),
-                        Stock = Convert.ToInt32(dr["stock_scooter"])
-
+                        Stock = Convert.ToInt32(dr["stock_scooter"]),
+                        Imagen = dr["url_imagen"].ToString()
                     };
                     lista.Add(emp);
                 }

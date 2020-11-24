@@ -1,0 +1,204 @@
+﻿@model IEnumerable<Venta_Bicis_Scooters.ENTITY.Accesorio>
+@{
+    ViewBag.Title = "TodosAccesorios";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+
+<header>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="~/Cliente/PrincipalCliente">Inicio <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="~/Producto/TodasBicicletas">Bicicletas<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="~/Producto/TodosScooter">Scooters<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="~/Producto/TodosAccesorios">Accesorios<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Contactanos<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="~/Cliente/Login">Login<span class="sr-only">(current)</span></a>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+
+</header>
+<br />
+
+<section>
+    <div class="wrapper">
+
+        <div class="row">
+
+            <!--FILTROS-->
+            <div class="col-md-2">
+                <h3>
+                    Scooters
+                </h3>
+                <h4>
+                    Marcas
+                </h4>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">Xiomi
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">Cecotec
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">Segway Ninebot
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">Razor Power
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">Revolt
+                    </label>
+                </div>
+                <br />
+                <h4>
+                    Precio
+                </h4>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">900 - 1500
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">1500 - 2200
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">2200 - 3000
+                    </label>
+                </div>
+                <br />
+                <h4>
+                    Aro
+                </h4>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">8 pulgadas
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">8.5 pulgadas
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">10 pulgadas
+                    </label>
+                </div>
+                <br />
+                <h4>
+                    Velocidad
+                </h4>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">18 km/h
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">24 km/h
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">25 km/h
+                    </label>
+                </div>
+                <br />
+                <h4>
+                    Potencia del motor
+                </h4>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">250 W
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">300 W
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">350 W
+                    </label>
+                </div>
+                <hr />
+                <a href="#" class="btn btn-primary">Filtrar</a>
+            </div>
+
+
+            <!--LSITADO ACCESORIOS-->
+            <div class="col-sm-10">
+                @foreach (var item in Model)
+                {
+
+                    <div class="col-sm-4" style="float:left;margin-bottom: 40px;">
+
+                        <div class="card">
+                            
+                            <a href="#"style="outline: none;text-decoration: none;color:black;">
+                                <div class="text-center">
+                                    <img src="@item.Imagen" style="width:50%;">
+                                </div>
+
+                                <br />
+
+                                <div class="text-center"  style="margin-left:18px;">
+                                   
+                                    <h5>@item.Descripcion</h5>
+                                    <p> S/.@String.Format("{0:f}", @item.Precio)</p>
+
+                                </div>
+                            </a>
+
+                         </div>
+
+                            <br />
+
+                    </div>
+
+                  
+                 }
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+

@@ -13,14 +13,19 @@ namespace Venta_Bicis_Scooters.Controllers
 {
     public class ClienteController : Controller
     {
+
         // GET: Cliente
 
         ClienteCrudDao clientedao = new ClienteCrudDao();
-
+       
 
         //VISTA PRINCIPAL DE LA PAGINA
         public ActionResult PrincipalCliente()
         {
+            
+            ViewBag.Apellido = Session["LastName"];
+            ViewBag.Nombre = Session["FirstName"];
+            ViewBag.logout = Session["logout"];
             return View();
         }
 
@@ -31,17 +36,36 @@ namespace Venta_Bicis_Scooters.Controllers
         {
             return View();
         }
+        public ActionResult IniciarSesion(string user, string pass)
+        {
+            Cliente c = clientedao.BuscarCliente(user, pass);
+            if (c != null)
+            {
+            
+                Session["User"] = c.Correo.ToString();
+                Session["LastName"] = "Hola!!";
+                Session["FirstName"] = c.Nombre.ToString();
+                Session["logout"] = "Cerrar Sesion";
+                return RedirectToAction("PrincipalCliente", "Cliente");
+            }
+            else
+            {
+                TempData["Error"] = "Usuario y/o contraseña incorrecta";
+                return RedirectToAction("Login");
+            }
+        }
+
+
+
+   
+
+
 
         /*---------------------------------------CLIENTE-------------------------------*/
 
 
-
-
-
-
         public ActionResult Create()
-        {
-            //LLENAR COMBO 
+        {    
             return View();
         }
 
@@ -52,11 +76,11 @@ namespace Venta_Bicis_Scooters.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    //LLENAR COMBO 
+                    
                     c.ID = c.ID;
 
                     clientedao.InsertCliente(c);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Login");
                 }
                 else
                 {
@@ -70,21 +94,14 @@ namespace Venta_Bicis_Scooters.Controllers
             }
         }
 
-        public ActionResult TodasBicicletas()
-        {
-            return View();
-        }
 
 
-        public ActionResult TodosScooter()
-        {
-            return View();
-        }
 
-        public ActionResult TodosAccesorios()
-        {
-            return View();
-        }
+       
+
+
+
+
 
     }
 }

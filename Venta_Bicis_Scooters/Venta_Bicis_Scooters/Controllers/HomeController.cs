@@ -20,7 +20,7 @@ namespace Venta_Bicis_Scooters.Controllers
         TrabajadorDao trabajadordao = new TrabajadorDao();
         BicicletaCrudDao bicicletadao = new BicicletaCrudDao();
         AccesorioCrudDao accesoriodao = new AccesorioCrudDao();
-        BD_VENTAS_BICICLETA_SCOOTEREntities1 db = new BD_VENTAS_BICICLETA_SCOOTEREntities1();
+        BD_VENTAS_BICICLETA_SCOOTEREntities db = new BD_VENTAS_BICICLETA_SCOOTEREntities();
         ClienteCrudDao clientedao = new ClienteCrudDao();
         /*----------------------------------------------------------------------------------------------------------------*/
 
@@ -63,6 +63,7 @@ namespace Venta_Bicis_Scooters.Controllers
             }
         }
 
+        
 
 
 
@@ -643,6 +644,8 @@ namespace Venta_Bicis_Scooters.Controllers
 
 
 
+
+
         /*---------------------------------------IMAGENES-------------------------------*/
 
         /*LISTADO*/
@@ -699,7 +702,6 @@ namespace Venta_Bicis_Scooters.Controllers
                     if (archivoBase.FileName.EndsWith(".jpg"))
                     {
                         WebImage image = new WebImage(archivoBase.InputStream);
-                        obj.url_imagen = image.GetBytes();  //te trae la foto en bytes
                     }
                     else
                     {
@@ -723,7 +725,7 @@ namespace Venta_Bicis_Scooters.Controllers
 
 
         /*METODO PARA EXTRAER Y CONVERTIR LA SECUENCIA DE BYTES EN IMAGEN*/
-        public ActionResult getImage(int id)
+     /*   public ActionResult getImage(int id)
         {
             if (Session["User"] != null)
             {
@@ -752,7 +754,7 @@ namespace Venta_Bicis_Scooters.Controllers
             }
 
         }
-
+        */
 
 
         /*EDIT*/
@@ -804,7 +806,6 @@ namespace Venta_Bicis_Scooters.Controllers
                     if (archivoBase.FileName.EndsWith(".jpg"))
                     {
                         WebImage image = new WebImage(archivoBase.InputStream);
-                        obj.url_imagen = image.GetBytes();
                     }
                     else
                     {
@@ -852,6 +853,14 @@ namespace Venta_Bicis_Scooters.Controllers
 
 
 
+
+
+
+
+
+
+
+
         /*---------------------------------------CLIENTE-------------------------------*/
 
 
@@ -875,6 +884,16 @@ namespace Venta_Bicis_Scooters.Controllers
 
 
         }
+
+
+
+
+
+
+
+
+
+
 
     }
 }

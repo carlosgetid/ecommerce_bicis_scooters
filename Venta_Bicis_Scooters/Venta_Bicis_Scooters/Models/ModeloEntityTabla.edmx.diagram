@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d55c8a82d1804ad8a985efe3a84031d6" Name="Diagram1">
+      <Diagram DiagramId="7ecaad77320b46ceb36307753e0ef399" Name="Diagram1">
         <EntityTypeShape EntityType="BD_VENTAS_BICICLETA_SCOOTERModel.TB_IMAGENES" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>

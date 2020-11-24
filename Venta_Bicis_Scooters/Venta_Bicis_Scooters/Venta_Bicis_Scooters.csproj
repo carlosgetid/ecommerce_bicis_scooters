@@ -197,6 +197,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="DATABASE\AccesoDato.cs" />
     <Compile Include="ENTITY\Accesorio.cs" />
     <Compile Include="ENTITY\Bicicleta.cs" />
@@ -212,26 +213,26 @@
     <Compile Include="Models\BicicletaCrudDao.cs" />
     <Compile Include="Models\ClienteCrudDao.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Imagen_2020Entity.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Imagen_2020Entity.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Imagen_2020Entity.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Imagen_2020Entity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Imagen_2020Entity.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Imagen_2020Entity.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MarcaDao.cs" />
+    <Compile Include="Models\ModeloEntityTabla.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloEntityTabla.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModeloEntityTabla.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloEntityTabla.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModeloEntityTabla.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloEntityTabla.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\ScooterCrudDao.cs" />
     <Compile Include="Models\TB_IMAGENES.cs">
-      <DependentUpon>Imagen_2020Entity.tt</DependentUpon>
+      <DependentUpon>ModeloEntityTabla.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TrabajadorDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -283,6 +284,44 @@
     <Content Include="Content\images\portada_bici.jpg" />
     <Content Include="Content\images\portado_scooter.jpg" />
     <Content Include="Content\images\V.jpg" />
+    <Content Include="Content\img\1.jpg" />
+    <Content Include="Content\img\2.jpg" />
+    <Content Include="Content\img\3.jpg" />
+    <Content Include="Content\img\4.jpg" />
+    <Content Include="Content\img\5.jpg" />
+    <Content Include="Content\img\6.jpg" />
+    <Content Include="Content\img\7.jpg" />
+    <Content Include="Content\img\Asiento ajustable para scooter eléctrico.jpg" />
+    <Content Include="Content\img\Bicicleta 2020 Suede 2.jpg" />
+    <Content Include="Content\img\Bicicleta Delta ADV.jpg" />
+    <Content Include="Content\img\Bicicleta Enchant.jpg" />
+    <Content Include="Content\img\Bicicleta Fr Advanced Ultegra Aquafresh.jpg" />
+    <Content Include="Content\img\Bicicleta Fr Advanced Ultegra Plasma Red.jpg" />
+    <Content Include="Content\img\Bicicleta Master Bike.jpg" />
+    <Content Include="Content\img\Bicicleta Mirage.jpg" />
+    <Content Include="Content\img\Bicicleta TEMPT 3.jpg" />
+    <Content Include="Content\img\Bicicleta Tricicargo Crosstown.jpg" />
+    <Content Include="Content\img\Bicicleta XTC JR.jpg" />
+    <Content Include="Content\img\Candado U-Lock Con Alarma Inteligente.jpg" />
+    <Content Include="Content\img\Casco de Bicicleta Unisex.jpg" />
+    <Content Include="Content\img\Luces Bolt combo led.jpg" />
+    <Content Include="Content\img\Lámpara luz frontal 3 LED Ultra brillante.jpg" />
+    <Content Include="Content\img\Mochila de Hidra Drafter 10L.jpg" />
+    <Content Include="Content\img\Porta Botella.jpg" />
+    <Content Include="Content\img\Scooter electrico Bongo Serie A.jpg" />
+    <Content Include="Content\img\Scooter electrico Bongo Serie S Unlimited.jpg" />
+    <Content Include="Content\img\Scooter electrico Ninebot ES3.jpg" />
+    <Content Include="Content\img\Scooter electrico Razor E300.jpg" />
+    <Content Include="Content\img\Scooter Electrico Silver N2.jpg" />
+    <Content Include="Content\img\Scooter electrico Xiaomi M365.jpg" />
+    <Content Include="Content\img\Scooter eléctrico E-Prime III.jpg" />
+    <Content Include="Content\img\Scooter eléctrico N4.jpg" />
+    <Content Include="Content\img\Scooter Eléctrico Ninebot Max G30P.jpg" />
+    <Content Include="Content\img\Scooter Eléctrico XIAOMI M365 PRO.jpg" />
+    <Content Include="Content\img\Set de herramientas múltiples.jpg" />
+    <Content Include="Content\img\Set de inflador de bolsillo con manómetro.jpg" />
+    <Content Include="Content\img\Set de protección Krown 2 rodilleras 2 coderas 2 muñequeras.jpg" />
+    <Content Include="Content\img\Soporte para celular de plástico.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="FrontEnd\build\config\postcss.config.js" />
     <Content Include="FrontEnd\build\config\rollup.config.js" />
@@ -1978,15 +2017,15 @@
     <Content Include="FrontEnd\plugins\toastr\toastr.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Imagen_2020Entity.Context.tt">
+    <Content Include="Models\ModeloEntityTabla.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Imagen_2020Entity.edmx</DependentUpon>
-      <LastGenOutput>Imagen_2020Entity.Context.cs</LastGenOutput>
+      <DependentUpon>ModeloEntityTabla.edmx</DependentUpon>
+      <LastGenOutput>ModeloEntityTabla.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Imagen_2020Entity.tt">
+    <Content Include="Models\ModeloEntityTabla.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Imagen_2020Entity.edmx</DependentUpon>
-      <LastGenOutput>Imagen_2020Entity.cs</LastGenOutput>
+      <DependentUpon>ModeloEntityTabla.edmx</DependentUpon>
+      <LastGenOutput>ModeloEntityTabla.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -2017,13 +2056,6 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
-    <EntityDeploy Include="Models\Imagen_2020Entity.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Imagen_2020Entity.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Imagen_2020Entity.edmx.diagram">
-      <DependentUpon>Imagen_2020Entity.edmx</DependentUpon>
-    </Content>
     <Content Include="FrontEnd\build\js\.jscsrc" />
     <Content Include="FrontEnd\build\scss\.csslintrc" />
     <Content Include="FrontEnd\build\scss\AdminLTE-components.scss" />
@@ -2188,6 +2220,13 @@
     <Content Include="FrontEnd\plugins\summernote\summernote.min.js.map" />
     <Content Include="FrontEnd\plugins\sweetalert2-theme-bootstrap-4\bootstrap-4.scss" />
     <Content Include="FrontEnd\plugins\toastr\toastr.js.map" />
+    <EntityDeploy Include="Models\ModeloEntityTabla.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModeloEntityTabla.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModeloEntityTabla.edmx.diagram">
+      <DependentUpon>ModeloEntityTabla.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -2197,9 +2236,6 @@
     <Content Include="Scripts\jquery-3.5.1.min.map" />
     <Content Include="Views\Cliente\PrincipalCliente.cshtml" />
     <Content Include="Views\Cliente\Login.cshtml" />
-    <Content Include="Views\Cliente\TodasBicicletas.cshtml" />
-    <Content Include="Views\Cliente\TodosScooter.cshtml" />
-    <Content Include="Views\Cliente\TodosAccesorios.cshtml" />
     <Content Include="Views\Home\PrincipalAdmin.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\ConsultarScooter.cshtml" />
@@ -2225,6 +2261,11 @@
     <Content Include="Views\Home\EditAccesorio.cshtml" />
     <Content Include="Views\Home\DetailsAccesorio.cshtml" />
     <Content Include="Views\Home\ConsultarAccesorio.cshtml" />
+    <Content Include="Views\Cliente\Create.cshtml" />
+    <Content Include="Views\Producto\TodasBicicletas.cshtml" />
+    <Content Include="Views\Producto\TodosScooter.cshtml" />
+    <Content Include="Views\Producto\TodosAccesorios.cshtml" />
+    <Content Include="Views\Producto\DetallesBicicletas.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

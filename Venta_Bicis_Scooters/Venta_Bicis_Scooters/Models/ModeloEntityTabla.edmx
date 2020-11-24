@@ -11,7 +11,7 @@
           </Key>
           <Property Name="cod_imagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descrp_imagen" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="url_imagen" Type="image" Nullable="false" />
+          <Property Name="url_imagen" Type="varchar" MaxLength="500" Nullable="false" />
         </EntityType>
         <EntityContainer Name="BD_VENTAS_BICICLETA_SCOOTERModelStoreContainer">
           <EntitySet Name="TB_IMAGENES" EntityType="Self.TB_IMAGENES" Schema="dbo" store:Type="Tables" />
@@ -27,9 +27,9 @@
           </Key>
           <Property Name="cod_imagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descrp_imagen" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="url_imagen" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="url_imagen" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="BD_VENTAS_BICICLETA_SCOOTEREntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="BD_VENTAS_BICICLETA_SCOOTEREntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TB_IMAGENES" EntityType="Self.TB_IMAGENES" />
         </EntityContainer>
       </Schema>
@@ -37,7 +37,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BD_VENTAS_BICICLETA_SCOOTERModelStoreContainer" CdmEntityContainer="BD_VENTAS_BICICLETA_SCOOTEREntities1">
+        <EntityContainerMapping StorageEntityContainer="BD_VENTAS_BICICLETA_SCOOTERModelStoreContainer" CdmEntityContainer="BD_VENTAS_BICICLETA_SCOOTEREntities">
           <EntitySetMapping Name="TB_IMAGENES">
             <EntityTypeMapping TypeName="BD_VENTAS_BICICLETA_SCOOTERModel.TB_IMAGENES">
               <MappingFragment StoreEntitySet="TB_IMAGENES">
@@ -61,10 +61,10 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
