@@ -163,37 +163,41 @@
 
             <!--LSITADO SCOOTER-->
             <div class="col-sm-10">
+
                 @foreach (var item in Model)
                 {
-
-                    <div class="col-sm-4" style="float: left;margin-bottom: 40px;">
+                    <div class="col-sm-3" style="float: left;margin-bottom: 40px;">
 
                         <div class="card">
 
                             <a href="@Url.Action("DetallesScooter",new { id=item.ID})" style="outline: none;text-decoration: none;color:black;">
+                                
                                 <div class="text-center">
-                                    <img src="@item.Imagen" style="width:50%;">
+                                    <img src="@item.Imagen" style="width:100%;">
                                 </div>
 
                                 <br />
 
                                 <div class="text-center" style="margin-left:18px;">
-                                    
+
                                     <h5>@item.Descripcion</h5>
                                     <p>S/.@String.Format("{0:f}", @item.Precio)  </p>
 
-                                 </div>
+                                </div>
+
                             </a>
 
                         </div>
 
-                            <br />
 
-                     </div>
+                        <br />
+                      
 
-                   
-                }
-            </div>
+                    </div>
+                 }
+
+
+                </div>
 
 
 

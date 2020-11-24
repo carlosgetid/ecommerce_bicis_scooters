@@ -307,6 +307,13 @@ INSERT TB_IMAGENES VALUES ('Set de protección Krown 2 rodilleras 2 coderas 2 muñ
 INSERT TB_IMAGENES VALUES ('Casco de Bicicleta Unisex',N'/Content/img/Casco de Bicicleta Unisex.jpg')
 INSERT TB_IMAGENES VALUES ('Candado U-Lock Con Alarma Inteligente',N'/Content/img/Candado U-Lock Con Alarma Inteligente.jpg')
 INSERT TB_IMAGENES VALUES ('Mochila de Hidra Drafter 10L',N'/Content/img/Mochila de Hidra Drafter 10L.jpg')
+INSERT TB_IMAGENES VALUES ('Scooter Electrico Zero 9',N'/Content/img/Scooter Electrico Zero 9.jpg')
+INSERT TB_IMAGENES VALUES ('Scooter Electrico HX X7',N'/Content/img/Scooter Electrico HX X7.jpg')
+INSERT TB_IMAGENES VALUES ('Bicicleta Mtb',N'/Content/img/Bicicleta Mtb.jpg')
+INSERT TB_IMAGENES VALUES ('Protector De Asiento Para Bicicleta',N'/Content/img/Protector De Asiento Para Bicicleta.jpg')
+INSERT TB_IMAGENES VALUES ('Espejo Retrovisor Para Bicicleta',N'/Content/img/Espejo Retrovisor Para Bicicleta.jpg')
+
+
 
 
 
@@ -317,24 +324,24 @@ GO
 --INSERT SCOOTER (10 A 15)
 
 INSERT TB_SCOOTER VALUES('Scooter Eléctrico XIAOMI M365 PRO',1,'Neumaticos de 8.5 pulgadas inflables','Negro','25 km/h','Brushless 300W','De disco ventilado trasero de 120 mm y un sistema de frenos antibloqueo regenerativo E-ABS delantero','Aleación de aluminio',1899,5,7)
-
 INSERT TB_SCOOTER VALUES('Scooter electrico Xiaomi M365',1,'Neumaticos de 8.5 pulgadas inflables','Negro','25 km/h','Brushless 250W','Sistema de frenado de disco y un sistema de frenado antibloqueo regenerativo eABS','Aleación de aluminio',1399,2,8)
-
 INSERT TB_SCOOTER VALUES('Scooter electrico Bongo Serie S Unlimited',2,'Tubeless antirreventón de 10 pulgadas','Negro','25 km/h','Potencia nominal de 350W','Doble disco de freno delantero y trasero','Aleación de aluminio',2321,3,9)
 
 INSERT TB_SCOOTER VALUES('Scooter electrico Bongo Serie A',2,'Tubeless antirreventón de 8,5 pulgadas','Gris','25 km/h','Potencia nominal de 350W','Triple sistema de frenado de seguridad extrema disco-electrico-manual','Aleación de aluminio',1264.57,4,10)
-
 INSERT TB_SCOOTER VALUES('Scooter Eléctrico Ninebot Max G30P',3,'Neumatico de 10 pulgadas','Gris','25 km/h','350W Brushless','De tambor delantero mecánico simultáneo y el posterior eléctrico regenerativo','Aleación de aluminio',2799,2,11)
-
 INSERT TB_SCOOTER VALUES('Scooter electrico Ninebot ES3',3,'Llanta sólida de 8 pulgadas','Negro','25 km/h','Potencia nominal de 250W','Electrónico y mecánico','Aleación de aluminio',1999.5,5,23)
 
 INSERT TB_SCOOTER VALUES('Scooter electrico Razor E300',4,'Neumático de 10 pulgadas inflables','Gris','24 km/h','Potencia de 250W','Delantero','Aleación de aluminio',999.89,3,24)
-
 INSERT TB_SCOOTER VALUES('Scooter eléctrico E-Prime III',4,'Neumático delantero de 8 pulgada','Negro','18 km/h','Potencia de 250W','Trasero','Aleación de aluminio',1649.33,2,25)
-
 INSERT TB_SCOOTER VALUES('Scooter eléctrico N4',5,'Neumático delantero de 8 pulgadas con cámara','Negro','25 km/h','Brushless 300W','De disco delantero y freno de pie posterior','Aleación de aluminio',1199,2,26)
 
+
 INSERT TB_SCOOTER VALUES('Scooter Electrico Silver N2',5,'Llantas de 8.5 tubeless','Gris','25 km/h','Brushless 250W','Delantero','Aleación de aluminio',1099,2,27)
+INSERT TB_SCOOTER VALUES('Scooter Electrico Zero 9',4,'Neumaticos de 8.5 pulgadas','Negro','48 km/h','Potencia de 600W','Delantero de disco y trasero tambor','Aleación de aluminio',2699,2,33)
+INSERT TB_SCOOTER VALUES('Scooter Electrico HX X7',3,'Neumaticos de 10 pulgadas','Negro','25 km/h','Potencia de 350W','Delantero de disco y trasero disco','Aleación de aluminio',1500,2,34)
+
+
+
 
 select * from TB_SCOOTER
 go
@@ -346,24 +353,22 @@ go
 
 
 INSERT TB_ACCESORIO VALUES('Set de inflador de bolsillo con manómetro',1,'Negro','95 gr','Plástico','21 cm de alto y 3 cm de ancho',69.90,2,13)
-
 INSERT TB_ACCESORIO VALUES('Set de herramientas múltiples',2,'Negro','500 gr','Acero','9 x 4.5 x 2.5 cm',39.90,2,14)
-
 INSERT TB_ACCESORIO VALUES('Soporte para celular de plástico',3,'Negro y Rojo','120 gr','Plástico','20 cm de alto y 15 cm de ancho',29.90,2,15)
 
 INSERT TB_ACCESORIO VALUES('Asiento ajustable para scooter eléctrico ',4,'Negro','2.8 kg','Cuerina Alumnio y Hierro','16.5 x 27 cm',189.90,2,16)
-
 INSERT TB_ACCESORIO VALUES('Luces Bolt combo led',5,'Negro','30 gr','Aluminio de alta calidad y plástico de nylon de primera clase','21 cm de alto y 3 cm de ancho',69.90,2,17)
-
 INSERT TB_ACCESORIO VALUES('Porta Botella',6,'Negro','50 gr','PVC','abrazadera 1.5 pies para botellas de 1 litro',39.90,2,28)
 
-INSERT TB_ACCESORIO VALUES('Set de protección Krown 2 rodilleras 2 coderas 2 muñequeras',7,'Negro','500 gr','Proteccion de PVC','Acolchado con espuma de alta densidad',119.90,2,29)
-
+INSERT TB_ACCESORIO VALUES('Set de protección Krown',7,'Negro','500 gr','Proteccion de PVC','Acolchado con espuma de alta densidad',119.90,2,29)
 INSERT TB_ACCESORIO VALUES('Casco de Bicicleta Unisex',8,'Negro','228 gr','Policarbonato','30 cm',179.90,2,30)
-
 INSERT TB_ACCESORIO VALUES('Candado U-Lock Con Alarma Inteligente',9,'Negro y amarillo','1 kg','Acero templado','30 cm y más grueso del momento 16mm',270,2,31)
 
 INSERT TB_ACCESORIO VALUES('Mochila de Hidra Drafter 10L',10,'Azul marino','1 kg','Lona','46 cm de alto y 25 cm de ancho',479,2,32)
+INSERT TB_ACCESORIO VALUES('Protector De Asiento Para Bicicleta',8,'Negro','50 gr','Asiento acolchado y relleno de gel','29 cm de largo x 21 de ancho',45,2,36)
+INSERT TB_ACCESORIO VALUES('Espejo Retrovisor Para Bicicleta ',10,'Negro','47.4 gr','Silicona','20 cm de largo x 10.5 de ancho',35,2,37)
+
+
 
 select * from TB_ACCESORIO
 go
@@ -373,26 +378,20 @@ go
 
 
 INSERT TB_BICICLETA VALUES('Bicicleta Montañera Monark Dakar Thypoon',6,'Aro 24','Gris','V-Brake Delantero y posterior','16 kg',729,2,1)
-
 INSERT TB_BICICLETA VALUES('Bicicleta Mirage',6,'24','Negro','V Brake','16 kg',849,2,2)
-
 INSERT TB_BICICLETA VALUES('Bicicleta Tricicargo Crosstown',6,'26','Negro','V Brake delantero y tambor posterior','20 kg',1699,2,3)
 
 INSERT TB_BICICLETA VALUES('Bicicleta Delta ADV',7,'26','Negro Verde','Disco Delantero y V Brake Trasero','16 kg',549,2,4)
-
 INSERT TB_BICICLETA VALUES('Bicicleta Master Bike',7,'26','Negro Verde','V Brake','18 kg',459,2,5)
-
 INSERT TB_BICICLETA VALUES('Bicicleta XTC JR',8,'20','Metallic Blue','Alloy Linear Pull','18 kg',1199,2,6)
 
 INSERT TB_BICICLETA VALUES('Bicicleta 2020 Suede 2',8,'26','Azul','Aluminio Direct Pull','18 kg',1899,2,18)
-
 INSERT TB_BICICLETA VALUES('Bicicleta Enchant',9,'20','Azul','Alloy Linear Pull','17 kg',1099,2,19)
-
 INSERT TB_BICICLETA VALUES('Bicicleta TEMPT 3',9,'27.5','Negro','SHIMANO M315','19 kg',2799,2,20)
 
 INSERT TB_BICICLETA VALUES('Bicicleta Fr Advanced Ultegra Plasma Red',10,'24','Rojo','Disco hidráulico Shimano BR8070','10 kg',2500,2,21)
-
 INSERT TB_BICICLETA VALUES('Bicicleta Fr Advanced Ultegra Aquafresh',10,'24','Oceano','Disco hidráulico Shimano BR8070','10 kg',2500,2,22)	
+INSERT TB_BICICLETA VALUES('Bicicleta Mtb',8,'26','Negro','Frenos V-Braker','17 kg',800,2,35)	
 
 
 select * from TB_BICICLETA

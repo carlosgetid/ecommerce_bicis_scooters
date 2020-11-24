@@ -67,19 +67,35 @@
 
 
 
-            <div style="float:left;margin-left:15px;">
+            <div class="col-sm-12" style="float:left;margin-left:15px;">
                 <br />
                 <br />
                 <h5>Caracteristicas Destacadas</h5>
-                <ul>
+                
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td> Color:</td>
+                        <td>@Model.Color</td>
+                    </tr>
 
-                    <li>Color: @Model.Color</li>
-                    <li>Peso: @Model.Peso</li>
-                    <li>Material: @Model.Material</li>
-                    <li>Velocidad: @Model.Dimension</li>
-                   
-                </ul>
+                    <tr>
+                        <td> Peso:</td>
+                        <td>@Model.Peso</td>
+                    </tr>
 
+                    <tr>
+                        <td> Material:</td>
+                        <td> @Model.Material</td>
+                    </tr>
+
+                    <tr>
+                        <td> Dimension:</td>
+                        <td>@Model.Dimension</td>
+                    </tr>
+
+                </table>
+                
+ 
             </div>
 
         </div>

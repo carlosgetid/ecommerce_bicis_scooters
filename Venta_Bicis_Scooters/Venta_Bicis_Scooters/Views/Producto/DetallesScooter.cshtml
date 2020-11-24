@@ -67,18 +67,44 @@
 
 
 
-            <div style="float:left;margin-left:15px;">
+            <div class="col-sm-12" style="float:left;margin-left:15px;">
                 <br />
                 <br />
                 <h5>Caracteristicas Destacadas</h5>
-                <ul>
-                    <li>Aro: @Model.Aro</li>
-                    <li>Color: @Model.Color</li>
-                    <li>Velocidad: @Model.Velocidad</li>
-                    <li>Motor: @Model.Motor</li>
-                    <li>Freno: @Model.Freno</li>
-                    <li>Material: @Model.Material</li>
-                </ul>
+
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td> Aro:</td>
+                        <td> @Model.Aro</td>
+                    </tr>
+
+                    <tr>
+                        <td> Color:</td>
+                        <td> @Model.Color</td>
+                    </tr>
+
+                    <tr>
+                        <td> Velocidad:</td>
+                        <td> @Model.Velocidad</td>
+                    </tr>
+
+                    <tr>
+                        <td> Motor:</td>
+                        <td>@Model.Motor</td>
+                    </tr>
+
+                    <tr>
+                        <td> Freno:</td>
+                        <td> @Model.Freno</td>
+                    </tr>
+
+                    <tr>
+                        <td> Material:</td>
+                        <td>@Model.Material</td>
+                    </tr>
+
+                </table>
+
 
             </div>
 
