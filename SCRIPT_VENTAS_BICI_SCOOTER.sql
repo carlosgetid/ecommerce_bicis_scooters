@@ -490,6 +490,17 @@ end
 go
 
 
+create proc usp_Cliente_Find
+@cod_cliente int
+as
+begin
+	select cod_cliente,nom_cliente,ape_cliente,dni_cliente,correo_cliente,cel_cliente,password_cliente
+	from TB_CLIENTE 
+	where cod_cliente=@cod_cliente
+end 
+go
+
+
 -----------------------------------------------------------------------------
 /*** TABLA SCOOTER *****/
 
