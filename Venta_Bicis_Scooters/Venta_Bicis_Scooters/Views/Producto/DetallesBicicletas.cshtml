@@ -58,7 +58,7 @@
                     <p>Marca <u>@Model.Marca </u> </p>
                     <p style="color:red;"> <strong> S/. @String.Format("{0:f}", Model.Precio) </strong>  </p>
                     <br />
-                    <a href="#" class="btn btn-primary" style="margin-left:50px;">Agregar al Carrito</a>
+                    <a href="@Url.Action("AgregarCarritoBicicleta",new { id=Model.ID})" class="btn btn-primary" style="margin-left:50px;">Agregar al Carrito</a>
 
                 </div>
 

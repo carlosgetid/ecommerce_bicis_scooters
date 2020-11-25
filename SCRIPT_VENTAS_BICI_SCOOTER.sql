@@ -27,7 +27,6 @@ CREATE TABLE TB_DIRECCION(
 cod_direccion int IDENTITY(1,1) PRIMARY KEY not null ,
 descrip_direccion varchar(250) not null,
 cod_cliente int null,
-cod_trabajador int null,
 cod_departamento varchar(2) not null,
 cod_provincia varchar(2) not null,
 cod_distrito varchar(2) not null,
@@ -73,7 +72,7 @@ url_imagen varchar(500) not null
 GO
 
 CREATE TABLE TB_SCOOTER(
-cod_scooter int IDENTITY(1,1) primary key not null,
+cod_scooter int IDENTITY(101,1) primary key not null,
 descrp_scooter varchar(350) not null,
 cod_marca int not null,
 aro_scooter varchar(200) not null,
@@ -89,7 +88,7 @@ cod_imagen int not null
 GO
 
 CREATE TABLE TB_ACCESORIO(
-cod_accesorio int IDENTITY(1,1) primary key not null,
+cod_accesorio int IDENTITY(201,1) primary key not null,
 descrp_accesorio varchar(350) not null,
 cod_marca int not null,
 color_accesorio varchar(200) not null,
@@ -127,29 +126,23 @@ total_pedido decimal not null
 )
 GO
 
+/*
+CREATE TABLE TB_TIPO_PEDIDO
+(
+cod_tipo_pedido  int IDENTITY(1,1) primary key not null,
+descrp_tipo varchar(200) not null,
+direccion int not null,
+nro_tarjeta varchar(200) not null,
+cod_seguridad_tarjeta varchar(200) not null,
+)
+GO
+*/
 
-CREATE TABLE TB_DETALLE_PEDIDO_SCOOTER(
-cod_pedido_scooter int IDENTITY(1,1) primary key not null,
+CREATE TABLE TB_DETALLE_PEDIDOS(
+cod_detalle_pedido int IDENTITY(1,1) primary key not null,
 nro_pedido int not null,
 cod_scooter int not null,
-cantidad int not null,
-total decimal not null
-)
-GO
-
-
-CREATE TABLE TB_DETALLE_PEDIDO_ACCESORIO(
-cod_pedido_accesorio int IDENTITY(1,1) primary key not null,
-nro_pedido int not null,
 cod_accesorio int not null,
-cantidad int not null,
-total decimal not null
-)
-GO
-
-CREATE TABLE TB_DETALLE_PEDIDO_BICICLETA(
-cod_pedido_bicicleta int IDENTITY(1,1) primary key not null,
-nro_pedido int not null,
 cod_bicicleta int not null,
 cantidad int not null,
 total decimal not null
@@ -185,8 +178,9 @@ ADD CONSTRAINT FK_DIRECCION_UBIGEO FOREIGN KEY (cod_direccion) REFERENCES TB_UBI
 ALTER TABLE TB_DIRECCION
 ADD CONSTRAINT FK_DIRECCION_CLIENTE FOREIGN KEY (cod_cliente) REFERENCES TB_CLIENTE(cod_cliente)
 
-ALTER TABLE TB_DIRECCION
-ADD CONSTRAINT FK_DIRECCION_TRABAJADOR FOREIGN KEY (cod_trabajador) REFERENCES TB_TRABAJADOR(cod_trabajador)
+
+
+
 
 
 ALTER TABLE TB_SCOOTER
@@ -219,19 +213,15 @@ ADD CONSTRAINT FK_CLIENTE_PEDIDO FOREIGN KEY (cod_cliente) REFERENCES TB_CLIENTE
 
 
 
-ALTER TABLE TB_DETALLE_PEDIDO_SCOOTER
+ALTER TABLE TB_DETALLE_PEDIDOS
 ADD CONSTRAINT FK_DETALLE_SCOOTER FOREIGN KEY (cod_scooter) REFERENCES TB_SCOOTER(cod_scooter)
-ALTER TABLE TB_DETALLE_PEDIDO_ACCESORIO
+ALTER TABLE TB_DETALLE_PEDIDOS
 ADD CONSTRAINT FK_DETALLE_ACCESORIO FOREIGN KEY (cod_accesorio) REFERENCES TB_ACCESORIO(cod_accesorio)
-ALTER TABLE TB_DETALLE_PEDIDO_BICICLETA
+ALTER TABLE TB_DETALLE_PEDIDOS
 ADD CONSTRAINT FK_DETALLE_BICICLETA FOREIGN KEY (cod_bicicleta) REFERENCES TB_BICICLETA(cod_bicicleta)
-
-ALTER TABLE TB_DETALLE_PEDIDO_SCOOTER
+ALTER TABLE TB_DETALLE_PEDIDOS
 ADD CONSTRAINT FK_DETALLE_PEDIDO_SCOOTER FOREIGN KEY (nro_pedido) REFERENCES TB_PEDIDO(nro_pedido)
-ALTER TABLE TB_DETALLE_PEDIDO_ACCESORIO
-ADD CONSTRAINT FK_DETALLE_PEDIDO_ACCESORIO FOREIGN KEY (nro_pedido) REFERENCES TB_PEDIDO(nro_pedido)
-ALTER TABLE TB_DETALLE_PEDIDO_BICICLETA
-ADD CONSTRAINT FK_DETALLE_PEDIDO_BICICLETA FOREIGN KEY (nro_pedido) REFERENCES TB_PEDIDO(nro_pedido)
+
 
 
 
