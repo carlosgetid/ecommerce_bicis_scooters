@@ -416,7 +416,7 @@ update dbo.TB_CLIENTE set estado_cliente=1
 go
 */
 
-
+go
 create proc usp_Cliente_Consultar
 @dni char(8)
 as
@@ -475,6 +475,17 @@ begin
 		correo_cliente=@correo_cliente,
 		cel_cliente=@cel_cliente,
 		password_cliente=@password_cliente
+	where cod_cliente=@cod_cliente
+end 
+go
+
+
+create proc usp_Cliente_Find
+@cod_cliente int
+as
+begin
+	select cod_cliente,nom_cliente,ape_cliente,dni_cliente,correo_cliente,cel_cliente,password_cliente
+	from TB_CLIENTE 
 	where cod_cliente=@cod_cliente
 end 
 go

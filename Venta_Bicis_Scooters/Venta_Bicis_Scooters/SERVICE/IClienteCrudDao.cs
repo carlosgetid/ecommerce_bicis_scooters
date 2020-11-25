@@ -14,7 +14,7 @@ namespace Venta_Bicis_Scooters.SERVICE
         void UpdateCliente(T e);
 
         T BuscarCliente(string user, string pass);
-
+        T FindCliente(int id);
 
         List<T> ConsultarCliente(string dni);
 

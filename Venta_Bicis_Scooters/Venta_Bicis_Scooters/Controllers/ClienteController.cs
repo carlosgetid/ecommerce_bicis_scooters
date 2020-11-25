@@ -17,12 +17,12 @@ namespace Venta_Bicis_Scooters.Controllers
         // GET: Cliente
 
         ClienteCrudDao clientedao = new ClienteCrudDao();
-       
+
 
         //VISTA PRINCIPAL DE LA PAGINA
         public ActionResult PrincipalCliente()
         {
-            
+
             ViewBag.Apellido = Session["LastName"];
             ViewBag.Nombre = Session["FirstName"];
             ViewBag.logout = Session["logout"];
@@ -41,7 +41,6 @@ namespace Venta_Bicis_Scooters.Controllers
             Cliente c = clientedao.BuscarCliente(user, pass);
             if (c != null)
             {
-            
                 Session["User"] = c.Correo.ToString();
                 Session["LastName"] = "Hola!!";
                 Session["FirstName"] = c.Nombre.ToString();
@@ -57,7 +56,7 @@ namespace Venta_Bicis_Scooters.Controllers
 
 
 
-   
+
 
 
 
@@ -65,7 +64,7 @@ namespace Venta_Bicis_Scooters.Controllers
 
 
         public ActionResult Create()
-        {    
+        {
             return View();
         }
 
@@ -76,7 +75,7 @@ namespace Venta_Bicis_Scooters.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    
+
                     c.ID = c.ID;
 
                     clientedao.InsertCliente(c);
@@ -94,7 +93,37 @@ namespace Venta_Bicis_Scooters.Controllers
             }
         }
 
+        public ActionResult EditCliente(int id,string user,string pass)
+        {
+            Cliente c = clientedao.BuscarCliente(user, pass);
+            if (c != null)
+            {
+                Cliente cli = clientedao.FindCliente(id);
+                return View(clientedao.FindCliente(id));
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
 
+        [HttpPost]
+        public ActionResult EditCliente(Cliente cli)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    clientedao.UpdateCliente(cli);
+                    return RedirectToAction("EditCliente");
+                }
+                return RedirectToAction("EditCliente");
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
 
        
