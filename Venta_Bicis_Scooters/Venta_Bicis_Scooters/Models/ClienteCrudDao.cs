@@ -50,6 +50,41 @@ namespace Venta_Bicis_Scooters.Models
             return emp;
         }
 
+        public Cliente FindCliente(int id)
+        {
+            Cliente emp = null;
+            try
+            {
+                SqlConnection cn = AccesoDato.getConnection();
+                SqlCommand cmd = new SqlCommand("usp_Cliente_Find", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@cod_cliente", id);
+
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    emp = new Cliente()
+                    {
+                        ID = Convert.ToInt32(dr["cod_cliente"].ToString()),
+                        Nombre = dr["nom_cliente"].ToString(),
+                        Apellido = dr["ape_cliente"].ToString(),
+                        DNI = dr["dni_cliente"].ToString(),
+                        Correo = dr["correo_cliente"].ToString(),
+                        Celular = dr["cel_cliente"].ToString(),
+                        paswoord = dr["password_cliente"].ToString()
+                    };
+                }
+                dr.Close();
+                cn.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            return emp;
+        }
 
         public List<Cliente> ConsultarCliente(string dni)
         {

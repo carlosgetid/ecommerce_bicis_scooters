@@ -426,7 +426,7 @@ update dbo.TB_CLIENTE set estado_cliente=1
 go
 */
 
-
+go
 create proc usp_Cliente_Consultar
 @dni char(8)
 as
