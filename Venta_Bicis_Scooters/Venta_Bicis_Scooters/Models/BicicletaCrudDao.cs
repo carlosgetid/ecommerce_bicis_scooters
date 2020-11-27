@@ -101,6 +101,7 @@ namespace Venta_Bicis_Scooters.Models
             throw new NotImplementedException();
         }
 
+   
         public void InsertBicicleta(Bicicleta e)
         {
             try

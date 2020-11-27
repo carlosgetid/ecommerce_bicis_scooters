@@ -19,13 +19,13 @@ namespace Venta_Bicis_Scooters.ENTITY
         public CarritoItem()
         {
             Bicicleta = new Bicicleta();
-           
+              Scooter = new Scooter()  ;
             Accesorio = new Accesorio();
         }
 
         public CarritoItem(Bicicleta bicicleta, Scooter scooter, Accesorio accesorio, int cantidad)
         {
-             Scooter = new Scooter()  ;
+          
             Bicicleta = bicicleta;
             Scooter = scooter;
             Accesorio = accesorio;

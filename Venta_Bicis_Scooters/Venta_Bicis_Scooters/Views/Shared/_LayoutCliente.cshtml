@@ -1,5 +1,4 @@
-﻿@model Venta_Bicis_Scooters.ENTITY.Cliente
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -32,11 +31,19 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav">
                         @*LOGIN*@
-                        <li class="nav-item ">
-                            <a class="nav-link" href="~/Cliente/Login">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link  dropdown-toggle" data-toggle="dropdown" href="~/Cliente/Login">
                                 <i class="far fa-user-circle" style="font-size:50px;color:black;"></i>
                                 <span class="sr-only">(current)</span>
                             </a>
+                            <div class="dropdown-menu">
+
+                                <a href="~/Cliente/Login" class="dropdown-item"> <em> @ViewBag.iniciar </em></a>
+                                <a href="@Url.Action("MiPerfil","Cliente")" class="dropdown-item"> <em> @ViewBag.perfil </em></a>
+                                <a href="@Url.Action("Logout","Cliente")" class="dropdown-item"> <em> @ViewBag.logout </em></a>
+
+
+                            </div>
                         </li>
 
                         @*CARRO DE COMPRAS*@
@@ -47,10 +54,8 @@
                             </a>
                         </li>
 
+                        <li><a href="#" class="dropdown-item"> <em> @ViewBag.Apellido </em> @ViewBag.Nombre</a>     </li>
 
-                        <li> <a href="#" class="btn btn-default"> <em> @ViewBag.Apellido </em> @ViewBag.Nombre</a></li>
-                        <li> <a href="@Url.Action("Logout","Cliente")" class="btn btn-default"> <em> @ViewBag.logout </em></a></li>
-                        @*<li> <a href="@Url.Action("EditCliente","Cliente")" class="btn btn-default"> <em> Mi perfil </em></a></li>*@
                     </ul>
                 </div>
 

@@ -22,10 +22,18 @@ namespace Venta_Bicis_Scooters.Controllers
         //VISTA PRINCIPAL DE LA PAGINA
         public ActionResult PrincipalCliente()
         {
-
-            ViewBag.Apellido = Session["LastName"];
-            ViewBag.Nombre = Session["FirstName"];
-            ViewBag.logout = Session["logout"];
+            if (Session["User"] != null)
+            {
+                ViewBag.Apellido = Session["LastName"];
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.logout = Session["logout"];
+                ViewBag.perfil = Session["perfil"];
+            }
+            else
+            {
+                ViewBag.iniciar = "Iniciar Session";
+            }
+                
             return View();
         }
 
@@ -45,6 +53,7 @@ namespace Venta_Bicis_Scooters.Controllers
                 Session["LastName"] = "Hola!!";
                 Session["FirstName"] = c.Nombre.ToString();
                 Session["logout"] = "Cerrar Sesion";
+                Session["perfil"] = "Mi perfil";
                 return RedirectToAction("PrincipalCliente", "Cliente");
             }
             else
@@ -54,7 +63,11 @@ namespace Venta_Bicis_Scooters.Controllers
             }
         }
 
-
+        public ActionResult Logout()
+        {
+            Session.Remove("User");
+            return RedirectToAction("PrincipalCliente");
+        }
 
 
 
@@ -93,18 +106,13 @@ namespace Venta_Bicis_Scooters.Controllers
             }
         }
 
-        public ActionResult EditCliente(int id,string user,string pass)
+        public ActionResult EditCliente(int id)
         {
-            Cliente c = clientedao.BuscarCliente(user, pass);
-            if (c != null)
+            if (Session["User"] != null)
             {
-                Cliente cli = clientedao.FindCliente(id);
-                return View(clientedao.FindCliente(id));
+                clientedao.FindCliente(id);
             }
-            else
-            {
-                return RedirectToAction("Login");
-            }
+              return View(clientedao.FindCliente(id));
         }
 
         [HttpPost]
@@ -125,7 +133,10 @@ namespace Venta_Bicis_Scooters.Controllers
             }
         }
 
-
+        public ActionResult MiPerfil()
+        {
+            return View();
+        }
        
 
 

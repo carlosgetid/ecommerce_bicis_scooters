@@ -15,7 +15,7 @@ namespace Venta_Bicis_Scooters.Controllers
         AccesorioCrudDao accesoriodao = new AccesorioCrudDao();
 
 
-        /*------------------------PRODUCTOS----------------------------*/
+        /*------------------------CARRITO DE COMPRAS-------------------------------------------------*/
         
         //CAPTURAR POSICION
         public int getIndex(int id)
@@ -169,8 +169,7 @@ namespace Venta_Bicis_Scooters.Controllers
 
 
 
-
-
+        /*----------------------------------PRODUCTOS---------------------------------------------*/
 
 
 
@@ -178,44 +177,119 @@ namespace Venta_Bicis_Scooters.Controllers
         /*--BICICLETAS--*/
         public ActionResult TodasBicicletas()
         {
-            ViewBag.Apellido = Session["LastName"];
-            ViewBag.Nombre = Session["FirstName"];
-            ViewBag.logout = Session["logout"];
-            return View(bicicletadao.ListarBicicleta().ToList());
+            if (Session["User"] != null)
+            {
+                ViewBag.Apellido = Session["LastName"];
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.logout = Session["logout"];
+                ViewBag.perfil = Session["perfil"];
+                return View(bicicletadao.ListarBicicleta().ToList());
+            }
+            else
+            {
+                ViewBag.iniciar = "Iniciar Session";
+                return View(bicicletadao.ListarBicicleta().ToList());
+            }
+           
         }
 
         public ActionResult DetallesBicicletas(int id)
         {
-            return View(bicicletadao.BuscarBicicleta(id));
+            if (Session["User"] != null)
+            {
+                ViewBag.Apellido = Session["LastName"];
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.logout = Session["logout"];
+                ViewBag.perfil = Session["perfil"];
+                return View(bicicletadao.BuscarBicicleta(id));
+            }
+            else
+            {
+                ViewBag.iniciar = "Iniciar Session";
+                return View(bicicletadao.BuscarBicicleta(id));
+            }
+
+         
         }
+
 
 
         /*--SCOOTER--*/
         public ActionResult TodosScooter()
         {
-            ViewBag.Apellido = Session["LastName"];
-            ViewBag.Nombre = Session["FirstName"];
-            ViewBag.logout = Session["logout"];
-            return View(scooterdao.ListarScooter().ToList());
+            if (Session["User"] != null)
+            {
+                ViewBag.Apellido = Session["LastName"];
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.logout = Session["logout"];
+                ViewBag.perfil = Session["perfil"];
+                return View(scooterdao.ListarScooter().ToList());
+            }
+            else
+            {
+                ViewBag.iniciar = "Iniciar Session";
+                return View(scooterdao.ListarScooter().ToList());
+            }
+
+     
         }
 
         public ActionResult DetallesScooter(int id)
         {
-            return View(scooterdao.BuscarScooter(id));
+            if (Session["User"] != null)
+            {
+                ViewBag.Apellido = Session["LastName"];
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.logout = Session["logout"];
+                ViewBag.perfil = Session["perfil"];
+                return View(scooterdao.BuscarScooter(id));
+            }
+            else
+            {
+                ViewBag.iniciar = "Iniciar Session";
+                return View(scooterdao.BuscarScooter(id));
+            }
+             
         }
+
+
+
 
         /*--ACCESORIOS--*/
         public ActionResult TodosAccesorios()
         {
-            ViewBag.Apellido = Session["LastName"];
-            ViewBag.Nombre = Session["FirstName"];
-            ViewBag.logout = Session["logout"];
-            return View(accesoriodao.ListarAccesorio().ToList());
+            if (Session["User"] != null)
+            {
+                ViewBag.Apellido = Session["LastName"];
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.logout = Session["logout"];
+                ViewBag.perfil = Session["perfil"];
+                return View(accesoriodao.ListarAccesorio().ToList());
+            }
+            else
+            {
+                ViewBag.iniciar = "Iniciar Session";
+                return View(accesoriodao.ListarAccesorio().ToList());
+            }
+
+     
         }
 
         public ActionResult DetallesAccesorios(int id)
         {
-            return View(accesoriodao.BuscarAccesorio(id));
+            if (Session["User"] != null)
+            {
+                ViewBag.Apellido = Session["LastName"];
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.logout = Session["logout"];
+                ViewBag.perfil = Session["perfil"];
+                return View(accesoriodao.BuscarAccesorio(id));
+            }
+            else
+            {
+                ViewBag.iniciar = "Iniciar Session";
+                return View(accesoriodao.BuscarAccesorio(id));
+            } 
         }
 
 
