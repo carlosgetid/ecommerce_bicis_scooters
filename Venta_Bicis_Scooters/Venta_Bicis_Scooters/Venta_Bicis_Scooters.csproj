@@ -204,6 +204,8 @@
     <Compile Include="ENTITY\Boleta.cs" />
     <Compile Include="ENTITY\CarritoItem.cs" />
     <Compile Include="ENTITY\Cliente.cs" />
+    <Compile Include="ENTITY\DetallePedido.cs" />
+    <Compile Include="ENTITY\Factura.cs" />
     <Compile Include="ENTITY\Marca.cs" />
     <Compile Include="ENTITY\Pedido.cs" />
     <Compile Include="ENTITY\Scooter.cs" />
@@ -216,8 +218,9 @@
     <Compile Include="Models\BicicletaCrudDao.cs" />
     <Compile Include="Models\BoletaCrudDao.cs" />
     <Compile Include="Models\ClienteCrudDao.cs" />
+    <Compile Include="Models\DetallePedidoDao.cs" />
+    <Compile Include="Models\FacturaCrudDao.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\IPedidoCrudDao.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MarcaDao.cs" />
     <Compile Include="Models\ModeloEntityTabla.Context.cs">
@@ -255,6 +258,8 @@
     <Compile Include="SERVICE\IBicicletaCrudDao.cs" />
     <Compile Include="SERVICE\IBoletaCrudDao.cs" />
     <Compile Include="SERVICE\IClienteCrudDao.cs" />
+    <Compile Include="SERVICE\IDetallePedidoCrudDao.cs" />
+    <Compile Include="SERVICE\IFacturaCrudDao.cs" />
     <Compile Include="SERVICE\IMarca.cs" />
     <Compile Include="SERVICE\IPedidoCrudDao.cs" />
     <Compile Include="SERVICE\IScooterCrudDao.cs" />
@@ -2294,9 +2299,13 @@
     <Content Include="Views\Cliente\MiPerfil.cshtml" />
     <Content Include="Views\Producto\FinalizarCompra.cshtml" />
     <Content Include="Views\Producto\Fin.cshtml" />
-    <Content Include="Views\Home\ListarPedidos.cshtml" />
     <Content Include="Views\Home\ListarBoleta.cshtml" />
     <Content Include="Views\Home\CreateBoleta.cshtml" />
+    <Content Include="Views\Home\VistaParcial.cshtml" />
+    <Content Include="Views\Home\ListarPedidos.cshtml" />
+    <Content Include="Views\Home\ListarDetallePedidos.cshtml" />
+    <Content Include="Views\Home\ListarFactura.cshtml" />
+    <Content Include="Views\Home\CreateFactura.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

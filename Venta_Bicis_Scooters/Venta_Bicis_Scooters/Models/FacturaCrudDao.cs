@@ -10,17 +10,17 @@ using Venta_Bicis_Scooters.SERVICE;
 
 namespace Venta_Bicis_Scooters.Models
 {
-    public class BoletaCrudDao : IBoletaCrudDao<Boleta>
+    public class FacturaCrudDao : IFacturaCrudDao<Factura>
     {
-        public void InsertBoleta(Boleta e)
+        public void InsertFactura(Factura e)
         {
             try
             {
                 SqlConnection cn = AccesoDato.getConnection();
-                SqlCommand cmd = new SqlCommand("usp_Boleta_Insertar", cn);
+                SqlCommand cmd = new SqlCommand("usp_Factura_Insertar", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-
+                cmd.Parameters.AddWithValue("@cod_ruc", e.Ruc);
                 cmd.Parameters.AddWithValue("@nro_pedido", e.Pedido);
 
 
@@ -34,24 +34,25 @@ namespace Venta_Bicis_Scooters.Models
             }
         }
 
-        public List<Boleta> ListarBoleta()
+        public List<Factura> ListarFactura()
         {
-            List<Boleta> lista = new List<Boleta>();
+            List<Factura> lista = new List<Factura>();
 
             try
             {
                 SqlConnection cn = AccesoDato.getConnection();
-                SqlCommand cmd = new SqlCommand("usp_Boleta_Listar", cn);
+                SqlCommand cmd = new SqlCommand("usp_Factura_Listar", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    Boleta emp = new Boleta()
+                    Factura emp = new Factura()
                     {
-                        ID = Convert.ToInt32(dr["nro_boleta"]),
-                        Fecha = dr["fecha_boleta"].ToString(),
+                        ID = Convert.ToInt32(dr["nro_factura"]),
+                        Ruc = dr["cod_ruc"].ToString(),
+                        Fecha = dr["fecha_factura"].ToString(),
                         Pedido = Convert.ToInt32(dr["nro_pedido"]),
                         Producto = dr["descrp_bicicleta"].ToString(),
                         Cantidad = Convert.ToInt32(dr["cantidad"]),

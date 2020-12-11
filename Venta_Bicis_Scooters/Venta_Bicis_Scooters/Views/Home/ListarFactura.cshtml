@@ -1,16 +1,15 @@
-﻿@model IEnumerable<Venta_Bicis_Scooters.ENTITY.Boleta>
+﻿@model IEnumerable<Venta_Bicis_Scooters.ENTITY.Factura>
 
 @{
-    ViewBag.Title = "ListarBoleta";
+    ViewBag.Title = "ListarFactura";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Listado de Boleta</h2>
+<h2>Listado de Factura</h2>
 <br />
 <p>
-    @Html.ActionLink("Crear Nueva Boleta", "CreateBoleta", null, new { @class = "btn btn-outline-success" })
+    @Html.ActionLink("Crear Nueva Factura", "CreateFactura", null, new { @class = "btn btn-outline-success" })
 </p>
-<br />
 <div class="table-wrapper-scroll-y my-custom-scrollbar">
     <table class="table table-bordered table-striped mb-0">
         <tr>
@@ -18,10 +17,10 @@
                 @Html.DisplayNameFor(model => model.ID)
             </th>
             <th class="text-center">
-                @Html.DisplayNameFor(model => model.Fecha)
+                @Html.DisplayNameFor(model => model.Ruc)
             </th>
             <th class="text-center">
-                @Html.DisplayNameFor(model => model.Pedido)
+                @Html.DisplayNameFor(model => model.Fecha)
             </th>
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.Producto)
@@ -31,6 +30,9 @@
             </th>
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Pedido)
             </th>
 
         </tr>
@@ -42,10 +44,10 @@
                     @Html.DisplayFor(modelItem => item.ID)
                 </td>
                 <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Fecha)
+                    @Html.DisplayFor(modelItem => item.Ruc)
                 </td>
                 <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Pedido)
+                    @Html.DisplayFor(modelItem => item.Fecha)
                 </td>
                 <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Producto)
@@ -56,12 +58,15 @@
                 <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Total)
                 </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Pedido)
+                </td>
+
             </tr>
         }
 
     </table>
 </div>
-
 
 
 <style>

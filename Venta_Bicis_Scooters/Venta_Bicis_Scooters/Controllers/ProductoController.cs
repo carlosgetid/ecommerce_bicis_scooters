@@ -106,7 +106,7 @@ namespace Venta_Bicis_Scooters.Controllers
                 {
 
                     TB_PEDIDO nuevoPedido = new TB_PEDIDO();
-                //    nuevoPedido.cod_cliente = Session["User"];
+                  //  nuevoPedido.cod_cliente = nuevoPedido.TB_CLIENTE.cod_cliente;
                     nuevoPedido.fecha_pedido = DateTime.Now;
                     nuevoPedido.sub_total = Convert.ToDecimal(compras.Sum(x => x.Bicicleta.Precio * x.Cantidad));
                     nuevoPedido.igv_pedido = nuevoPedido.sub_total * Convert.ToDecimal(0.16);

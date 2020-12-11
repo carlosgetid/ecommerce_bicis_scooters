@@ -1,18 +1,21 @@
-﻿@model IEnumerable<Venta_Bicis_Scooters.ENTITY.Pedido>
+﻿@model IEnumerable<Venta_Bicis_Scooters.ENTITY.DetallePedido>
 
-<h2>Listado de Pedidos</h2>
+<h2>Listado de los Detalle de Pedidos</h2>
 <br />
-
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
     <table class="table table-bordered table-striped mb-0">
         <tr>
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.ID)
             </th>
             <th class="text-center">
-                @Html.DisplayNameFor(model => model.Cliente)
+                @Html.DisplayNameFor(model => model.Pedido)
             </th>
             <th class="text-center">
-                @Html.DisplayNameFor(model => model.Fecha)
+                @Html.DisplayNameFor(model => model.Producto)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Cantidad)
             </th>
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.Total)
@@ -23,14 +26,17 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td class="text-center">
+                 <td class="text-center">
                     @Html.DisplayFor(modelItem => item.ID)
                 </td>
                 <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Cliente)
+                    @Html.DisplayFor(modelItem => item.Pedido)
                 </td>
                 <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Fecha)
+                    @Html.DisplayFor(modelItem => item.Producto)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Cantidad)
                 </td>
                 <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Total)
@@ -40,6 +46,7 @@
         }
 
     </table>
+</div>
 
 
 

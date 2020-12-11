@@ -10,28 +10,29 @@ using Venta_Bicis_Scooters.SERVICE;
 
 namespace Venta_Bicis_Scooters.Models
 {
-    public class PedidoCrudDao : IPedidoCrudDao<Pedido>
+    public class DetallePedidoDao : IDetallePedidoCrudDao<DetallePedido>
     {
-        public List<Pedido> ListarPedido()
+        public List<DetallePedido> ListarDetallePedido()
         {
-            List<Pedido> lista = new List<Pedido>();
+            List<DetallePedido> lista = new List<DetallePedido>();
 
             try
             {
                 SqlConnection cn = AccesoDato.getConnection();
-                SqlCommand cmd = new SqlCommand("usp_Pedido_Listar", cn);
+                SqlCommand cmd = new SqlCommand("usp_DTPedido_Listar", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    Pedido emp = new Pedido()
+                    DetallePedido emp = new DetallePedido()
                     {
-                        ID = Convert.ToInt32(dr["nro_pedido"]),
-                        Cliente = Convert.ToInt32(dr["cod_cliente"]),
-                        Fecha = dr["fecha_pedido"].ToString(),
-                        Total = Convert.ToDecimal(dr["total_pedido"])
+                        ID = Convert.ToInt32(dr["cod_detalle_pedido"]),
+                        Pedido = Convert.ToInt32(dr["nro_pedido"]),
+                        Producto = dr["descrp_bicicleta"].ToString(),
+                        Cantidad = Convert.ToInt32(dr["cantidad"]),
+                        Total = Convert.ToDecimal(dr["total"])
 
                     };
                     lista.Add(emp);
@@ -45,8 +46,5 @@ namespace Venta_Bicis_Scooters.Models
             }
             return lista;
         }
-    
-    
-    
     }
 }

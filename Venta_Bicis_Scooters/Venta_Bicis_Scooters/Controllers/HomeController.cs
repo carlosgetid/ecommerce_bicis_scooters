@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using Venta_Bicis_Scooters.ENTITY;
 using Venta_Bicis_Scooters.Models;
 
+
 namespace Venta_Bicis_Scooters.Controllers
 {
     public class HomeController : Controller
@@ -22,6 +23,8 @@ namespace Venta_Bicis_Scooters.Controllers
         AccesorioCrudDao accesoriodao = new AccesorioCrudDao();
         PedidoCrudDao pedidodao = new PedidoCrudDao();
         BoletaCrudDao boletadao = new BoletaCrudDao();
+        DetallePedidoDao detallepedidodao = new DetallePedidoDao();
+        FacturaCrudDao facturadao = new FacturaCrudDao();
         BD_VENTAS_BICICLETA_SCOOTEREntities db = new BD_VENTAS_BICICLETA_SCOOTEREntities();
         ClienteCrudDao clientedao = new ClienteCrudDao();
         /*----------------------------------------------------------------------------------------------------------------*/
@@ -899,7 +902,7 @@ namespace Venta_Bicis_Scooters.Controllers
             {
                 ViewBag.Nombre = Session["FirstName"];
                 ViewBag.Apellido = Session["LastName"];
-                return View(pedidodao.ListarPedido().ToList());
+                return PartialView(pedidodao.ListarPedido().ToList());
 
             }
             else
@@ -908,6 +911,44 @@ namespace Venta_Bicis_Scooters.Controllers
             }
 
         }
+
+        /*LISTADO*/
+        public ActionResult ListarDetallePedidos()
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return PartialView(detallepedidodao.ListarDetallePedido().ToList());
+
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+        }
+
+        public ActionResult VistaParcial()
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View();
+
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+          
+        }
+
+
+
+
+
 
 
 
@@ -992,6 +1033,87 @@ namespace Venta_Bicis_Scooters.Controllers
 
 
 
+
+
+
+        /*---------------------------------------FACTURA-------------------------------*/
+        /*LISTADO*/
+
+        public ActionResult ListarFactura()
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View(facturadao.ListarFactura().ToList());
+
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+        }
+
+
+        //INSERT
+        public ActionResult CreateFactura()
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+
+                ViewBag.pedido = new SelectList(pedidodao.ListarPedido(), "ID", "ID");
+
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+        }
+        [HttpPost]
+        public ActionResult CreateFactura(Factura emp)
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ViewBag.pedido = new SelectList(pedidodao.ListarPedido(), "ID", "ID");
+
+                        emp.ID = emp.ID;
+
+                        facturadao.InsertFactura(emp);
+                        return RedirectToAction("ListarFactura");
+                    }
+                    else
+                    {
+                        return RedirectToAction("ListarFactura");
+                    }
+
+                }
+                catch
+                {
+                    return View();
+                }
+
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+        }
 
 
 
