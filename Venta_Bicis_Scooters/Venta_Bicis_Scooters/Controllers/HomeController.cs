@@ -20,6 +20,8 @@ namespace Venta_Bicis_Scooters.Controllers
         TrabajadorDao trabajadordao = new TrabajadorDao();
         BicicletaCrudDao bicicletadao = new BicicletaCrudDao();
         AccesorioCrudDao accesoriodao = new AccesorioCrudDao();
+        PedidoCrudDao pedidodao = new PedidoCrudDao();
+        BoletaCrudDao boletadao = new BoletaCrudDao();
         BD_VENTAS_BICICLETA_SCOOTEREntities db = new BD_VENTAS_BICICLETA_SCOOTEREntities();
         ClienteCrudDao clientedao = new ClienteCrudDao();
         /*----------------------------------------------------------------------------------------------------------------*/
@@ -884,6 +886,118 @@ namespace Venta_Bicis_Scooters.Controllers
 
 
         }
+
+
+
+
+
+        /*---------------------------------------PEDIDO-------------------------------*/
+        /*LISTADO*/
+        public ActionResult ListarPedidos()
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View(pedidodao.ListarPedido().ToList());
+
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+        }
+
+
+
+        /*---------------------------------------BOLETA-------------------------------*/
+        /*LISTADO*/
+
+        public ActionResult ListarBoleta()
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View(boletadao.ListarBoleta().ToList());
+
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+        }
+
+
+        //INSERT
+        public ActionResult CreateBoleta()
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+
+                ViewBag.pedido = new SelectList(pedidodao.ListarPedido(), "ID", "ID");
+           
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+        }
+        [HttpPost]
+        public ActionResult CreateBoleta(Boleta emp)
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ViewBag.pedido = new SelectList(pedidodao.ListarPedido(), "ID", "ID");
+
+                        emp.ID = emp.ID;
+
+                        boletadao.InsertBoleta(emp);
+                        return RedirectToAction("ListarBoleta");
+                    }
+                    else
+                    {
+                        return RedirectToAction("ListarBoleta");
+                    }
+
+                }
+                catch
+                {
+                    return View();
+                }
+
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+        }
+
+
+
+
+
+
+
+
+
 
 
 

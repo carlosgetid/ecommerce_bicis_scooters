@@ -13,140 +13,67 @@ namespace Venta_Bicis_Scooters.Controllers
         ScooterCrudDao scooterdao = new ScooterCrudDao();
         BicicletaCrudDao bicicletadao = new BicicletaCrudDao();
         AccesorioCrudDao accesoriodao = new AccesorioCrudDao();
-
+        BD_VENTAS_BICICLETA_SCOOTEREntities db = new BD_VENTAS_BICICLETA_SCOOTEREntities();
 
         /*------------------------CARRITO DE COMPRAS-------------------------------------------------*/
         
         //CAPTURAR POSICION
         public int getIndex(int id)
         {
-            //contenido de la session pasa a la lista
-            List<CarritoItem> compras = (List<CarritoItem>)Session["Carrito"];
+                //contenido de la session pasa a la lista
+                List<CarritoItem> compras = (List<CarritoItem>)Session["carrito"];
 
-                      
-                 /*           for (int i = 0; i < compras.Count; i++)
-                            {
-                                    if (compras[i].Bicicleta.ID == id &&  id<=100)
-                                    {
-                                        return i;
-                                    }
-                                    else if (compras[i].Scooter.ID == id && id <= 200)
-                                    {
-                                        return i;
-                                    }
-                                    else if (compras[i].Accesorio.ID == id && id <= 300)
-                                     {
-                                             return i;
-                                     }
-                            }
-                   */
-                   
-
-            if(id <= 100)
-            {
-                for (int i = 0; i < compras.Count; i++)
+                for(int i = 0; i< compras.Count; i++)
                 {
-                    if (compras[i].Bicicleta.ID == id)
+                    if(compras[i].Bicicleta.ID == id )
                     {
                         return i;
                     }
                 }
-            }
-            else if (id <= 200)
-            {
-                for (int i = 0; i < compras.Count; i++)
-                {
-                  
-                        if (compras[i].Scooter.ID == id)
-                        {
-                            return i;
-                        }
-                  
-                    
-                }
-            }
-            else
-            {
-                for (int i = 0; i < compras.Count; i++)
-                {
-                    if (compras[i].Accesorio.ID == id)
-                    {
-                        return i;
-                    }
-                }
-            }
+                return -1;
+           
+  
 
-             return -1;
-              
         }
-
-
-
 
 
         //AGREGAMOS UN PRODUCTO AL CARRITO 
         public ActionResult AgregarCarritoBicicleta(int id)
         {
-
+           
             //SI EL CARRITO ESTA VACIO: CREAR COLECCION Y AGREGAR LOS PRODUCTOS
-            if (Session["Carrito"] == null)
+            if (Session["carrito"] == null)
             {
-                List<CarritoItem> compras = new List<CarritoItem>();
-                
-                if(id <= 100)
-                {
-                    compras.Add(new CarritoItem(bicicletadao.BuscarBicicleta(id), scooterdao.BuscarScooter(id), accesoriodao.BuscarAccesorio(id), 1));
-                }
-                else if (id <= 200)
-                {
-                    compras.Add(new CarritoItem(bicicletadao.BuscarBicicleta(id), scooterdao.BuscarScooter(id), accesoriodao.BuscarAccesorio(id), 1));
-                }
-                else if (id <= 300)
-                {
-                    compras.Add(new CarritoItem(bicicletadao.BuscarBicicleta(id), scooterdao.BuscarScooter(id), accesoriodao.BuscarAccesorio(id), 1));
-                }
+                     List<CarritoItem> compras = new List<CarritoItem>();
+                compras.Add(new CarritoItem(bicicletadao.BuscarBicicleta(id), 1));
+                    Session["carrito"] = compras;
 
-                ViewBag.codigo = id;
-
-                Session["Carrito"] = compras;
             }
 
             else
-            {   //AGREGAR EL PRODUCTO ENCONTRADO , AUMENTA LA CANTIDAD 
+            {
 
-                List<CarritoItem> compras = (List<CarritoItem>)Session["Carrito"];
-                int posicion = getIndex(id);
-                if (posicion == -1) //no lo encontro
-                {
-                    if (id <= 100)
-                    {
-                        compras.Add(new CarritoItem(bicicletadao.BuscarBicicleta(id), scooterdao.BuscarScooter(id), accesoriodao.BuscarAccesorio(id), 1));
-                    }
-                    else if (id <= 200)
-                    {
-                        compras.Add(new CarritoItem(bicicletadao.BuscarBicicleta(id), scooterdao.BuscarScooter(id), accesoriodao.BuscarAccesorio(id), 1));
-                    }
-                    else if (id <= 300)
-                    {
-                        compras.Add(new CarritoItem(bicicletadao.BuscarBicicleta(id), scooterdao.BuscarScooter(id), accesoriodao.BuscarAccesorio(id), 1));
-                    }
+                    //AGREGAR EL PRODUCTO ENCONTRADO , AUMENTA LA CANTIDAD 
+                    List<CarritoItem> compras = (List<CarritoItem>)Session["carrito"] ;
+                        int posicion = getIndex(id);
+                        if (posicion == -1 ) //no lo encontro
+                        {
+                            compras.Add(new CarritoItem(bicicletadao.BuscarBicicleta(id), 1));
+                           
+                        }
+                        else
+                        {
+                           compras[posicion].Cantidad++;
 
-                    ViewBag.codigo = id;
-
-                }
-                else
-                {
-                    compras[posicion].Cantidad++;
-                }
-
-                Session["Carrito"] = compras;
+                        }
+                ViewBag.id = posicion;
+                Session["carrito"] = compras;
+  
             }
 
             return View();
+
         }
-
-
-
 
 
 
@@ -154,7 +81,7 @@ namespace Venta_Bicis_Scooters.Controllers
         //ELIMINAR DEL CARRITO
         public ActionResult Delete(int id)
         {
-            List<CarritoItem> comprasB = (List<CarritoItem>)Session["Carrito"];
+            List<CarritoItem> comprasB = (List<CarritoItem>)Session["carrito"];
             comprasB.RemoveAt(getIndex(id));
 
             return View("AgregarCarritoBicicleta");
@@ -163,8 +90,58 @@ namespace Venta_Bicis_Scooters.Controllers
         }
 
 
+        public ActionResult FinalizarCompra()
+        {
+            if (Session["logeo"].Equals(false))
+            {
+                RedirectToAction("IniciarSesion", "Cliente");
+            }
+            else
+            {
+
+            
+
+                List<CarritoItem> compras = (List<CarritoItem>)Session["carrito"] ;
+                if (compras != null && compras.Count > 0)
+                {
+
+                    TB_PEDIDO nuevoPedido = new TB_PEDIDO();
+                //    nuevoPedido.cod_cliente = Session["User"];
+                    nuevoPedido.fecha_pedido = DateTime.Now;
+                    nuevoPedido.sub_total = Convert.ToDecimal(compras.Sum(x => x.Bicicleta.Precio * x.Cantidad));
+                    nuevoPedido.igv_pedido = nuevoPedido.sub_total * Convert.ToDecimal(0.16);
+                    nuevoPedido.total_pedido = nuevoPedido.sub_total + nuevoPedido.igv_pedido;
 
 
+                    nuevoPedido.TB_DETALLE_PEDIDOS = (from pedido in compras
+                                                      select new TB_DETALLE_PEDIDOS
+                                                      {
+                                                          cod_bicicleta = pedido.Bicicleta.ID,
+                                                          cantidad = pedido.Cantidad,
+                                                          total = Convert.ToDecimal(pedido.Cantidad * pedido.Bicicleta.Precio)
+
+
+
+                                                      }).ToList();
+                    db.TB_PEDIDO.Add(nuevoPedido);
+                    db.SaveChanges();
+                    Session["carrito"] = new List<CarritoItem>();
+
+                }
+
+
+            }
+            return View();
+            
+        }
+
+
+
+        public ActionResult Fin()
+        {
+
+            return View();
+        }
 
 
 

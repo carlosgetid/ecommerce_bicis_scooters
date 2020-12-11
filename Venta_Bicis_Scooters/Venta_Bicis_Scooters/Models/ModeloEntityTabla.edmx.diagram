@@ -6,6 +6,11 @@
     <edmx:Diagrams>
       <Diagram DiagramId="7ecaad77320b46ceb36307753e0ef399" Name="Diagram1">
         <EntityTypeShape EntityType="BD_VENTAS_BICICLETA_SCOOTERModel.TB_IMAGENES" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAS_BICICLETA_SCOOTERModel.TB_DETALLE_PEDIDOS" Width="1.5" PointX="5.625" PointY="1" />
+        <EntityTypeShape EntityType="BD_VENTAS_BICICLETA_SCOOTERModel.TB_CLIENTE" Width="1.5" PointX="1.25" PointY="4" />
+        <EntityTypeShape EntityType="BD_VENTAS_BICICLETA_SCOOTERModel.TB_PEDIDO" Width="1.5" PointX="3.625" PointY="2" />
+        <AssociationConnector Association="BD_VENTAS_BICICLETA_SCOOTERModel.FK_CLIENTE_PEDIDO" />
+        <AssociationConnector Association="BD_VENTAS_BICICLETA_SCOOTERModel.FK_DETALLE_PEDIDO_SCOOTER" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -37,7 +37,10 @@ namespace Venta_Bicis_Scooters.Models
                         DNI = dr["dni_cliente"].ToString(),
                         Correo = dr["correo_cliente"].ToString(),
                         Celular = dr["cel_cliente"].ToString(),
-                        paswoord = dr["password_cliente"].ToString()
+                        paswoord = dr["password_cliente"].ToString(),
+                        Direccion = dr["direccion"].ToString(),
+                        Tarjeta = dr["nro_tarjeta"].ToString(),
+                        Codigo_Seguridad= dr["cod_seguridad_tarjeta"].ToString()
                     };
                 }
                 dr.Close();
@@ -73,7 +76,10 @@ namespace Venta_Bicis_Scooters.Models
                         DNI = dr["dni_cliente"].ToString(),
                         Correo = dr["correo_cliente"].ToString(),
                         Celular = dr["cel_cliente"].ToString(),
-                        paswoord = dr["password_cliente"].ToString()
+                        paswoord = dr["password_cliente"].ToString(),
+                        Direccion = dr["direccion"].ToString(),
+                        Tarjeta = dr["nro_tarjeta"].ToString(),
+                        Codigo_Seguridad = dr["cod_seguridad_tarjeta"].ToString()
                     };
                 }
                 dr.Close();
@@ -111,7 +117,9 @@ namespace Venta_Bicis_Scooters.Models
                         DNI = dr["dni_cliente"].ToString(),
                         Correo = dr["correo_cliente"].ToString(),
                         Celular = dr["cel_cliente"].ToString(),
-
+                        Direccion = dr["direccion"].ToString(),
+                        Tarjeta = dr["nro_tarjeta"].ToString(),
+                        Codigo_Seguridad = dr["cod_seguridad_tarjeta"].ToString()
 
                     };
                     lista.Add(emp);
@@ -142,7 +150,9 @@ namespace Venta_Bicis_Scooters.Models
                 cmd.Parameters.AddWithValue("@correo_cliente", e.Correo);
                 cmd.Parameters.AddWithValue("@cel_cliente", e.Celular);
                 cmd.Parameters.AddWithValue("@password_cliente", e.paswoord);
-          
+                cmd.Parameters.AddWithValue("@direc", e.Direccion);
+                cmd.Parameters.AddWithValue("@nro_tarjeta", e.Tarjeta);
+                cmd.Parameters.AddWithValue("@cod_seguridad", e.Codigo_Seguridad);
 
                 cn.Open();
                 bool iresult = cmd.ExecuteNonQuery() == 1 ? true : false;
@@ -160,7 +170,7 @@ namespace Venta_Bicis_Scooters.Models
 
 
 
-
+        
         public void UpdateCliente(Cliente e)
         {
             try
@@ -187,7 +197,7 @@ namespace Venta_Bicis_Scooters.Models
                 throw ex;
             }
         }
-
+        
 
 
 

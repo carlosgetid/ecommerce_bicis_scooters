@@ -33,6 +33,8 @@ cod_distrito varchar(2) not null,
 )
 GO
 
+
+---------------------------------------------------------------------------------
 CREATE TABLE TB_TRABAJADOR(
 cod_trabajador int IDENTITY(1,1) primary key not null,
 nom_trabajador varchar(200) not null,
@@ -53,6 +55,9 @@ dni_cliente char(8) not null,
 correo_cliente varchar(250) not null, /*funcionara como username */
 cel_cliente char(9) not null,
 password_cliente varchar(20) not null,
+direccion varchar(500) not null,
+nro_tarjeta varchar(200) not null,
+cod_seguridad_tarjeta varchar(200) not null,
 estado_cliente bit not null
 )
 GO
@@ -115,41 +120,32 @@ cod_imagen int not null
 )
 GO
 
+
 CREATE TABLE TB_PEDIDO(
 nro_pedido int IDENTITY(1,1) primary key not null,
 cod_cliente int not null,
 fecha_pedido date not null,
-tipo_pedido varchar(200) not null,
 sub_total decimal not null,
 igv_pedido decimal not null,
 total_pedido decimal not null
 )
 GO
 
-/*
-CREATE TABLE TB_TIPO_PEDIDO
-(
-cod_tipo_pedido  int IDENTITY(1,1) primary key not null,
-descrp_tipo varchar(200) not null,
-direccion int not null,
-nro_tarjeta varchar(200) not null,
-cod_seguridad_tarjeta varchar(200) not null,
-)
-GO
-*/
-
 CREATE TABLE TB_DETALLE_PEDIDOS(
 cod_detalle_pedido int IDENTITY(1,1) primary key not null,
 nro_pedido int not null,
-cod_scooter int not null,
-cod_accesorio int not null,
 cod_bicicleta int not null,
 cantidad int not null,
 total decimal not null
 )
 GO
 
-
+/*
+select * from TB_PEDIDO
+select * from TB_DETALLE_PEDIDOS
+select * from TB_CLIENTE
+select * from TB_BOLETA
+*/
 
 
 
@@ -160,6 +156,18 @@ fecha_boleta Date not null,
 nro_pedido int not null 
 )
 GO
+
+
+
+
+
+
+
+
+
+
+
+
 
 CREATE TABLE TB_FACTURA(
 nro_factura int IDENTITY(1,1) primary key not null,
@@ -174,7 +182,6 @@ GO
 
 ALTER TABLE TB_DIRECCION
 ADD CONSTRAINT FK_DIRECCION_UBIGEO FOREIGN KEY (cod_direccion) REFERENCES TB_UBIGEO(cod_ubigeo)
-
 ALTER TABLE TB_DIRECCION
 ADD CONSTRAINT FK_DIRECCION_CLIENTE FOREIGN KEY (cod_cliente) REFERENCES TB_CLIENTE(cod_cliente)
 
@@ -185,18 +192,20 @@ ADD CONSTRAINT FK_DIRECCION_CLIENTE FOREIGN KEY (cod_cliente) REFERENCES TB_CLIE
 
 ALTER TABLE TB_SCOOTER
 ADD CONSTRAINT FK_SCOOTER_MARCA FOREIGN KEY (cod_marca) REFERENCES TB_MARCA(cod_marca)
-
 ALTER TABLE TB_ACCESORIO
 ADD CONSTRAINT FK_ACCESORIO_MARCA FOREIGN KEY (cod_marca) REFERENCES TB_MARCA(cod_marca)
-
 ALTER TABLE TB_BICICLETA
 ADD CONSTRAINT FK_BICICLETA_MARCA FOREIGN KEY (cod_marca) REFERENCES TB_MARCA(cod_marca)
 
 
+
 ALTER TABLE TB_BOLETA
 ADD CONSTRAINT FK_BOLETA_PEDIDO FOREIGN KEY (nro_pedido) REFERENCES TB_PEDIDO(nro_pedido)
+
 ALTER TABLE TB_FACTURA
 ADD CONSTRAINT FK_FACTURA_PEDIDO FOREIGN KEY (nro_pedido) REFERENCES TB_PEDIDO(nro_pedido)
+
+
 
 ALTER TABLE TB_BICICLETA
 ADD CONSTRAINT FK_BICICLETA_IMAGENES FOREIGN KEY (cod_imagen) REFERENCES TB_IMAGENES(cod_imagen)
@@ -204,6 +213,8 @@ ALTER TABLE TB_ACCESORIO
 ADD CONSTRAINT FK_ACCESORIO_IMAGENES FOREIGN KEY (cod_imagen) REFERENCES TB_IMAGENES(cod_imagen)
 ALTER TABLE TB_SCOOTER
 ADD CONSTRAINT FK_SCOOTER_IMAGENES FOREIGN KEY (cod_imagen) REFERENCES TB_IMAGENES(cod_imagen)
+
+
 
 ALTER TABLE TB_PEDIDO
 ADD CONSTRAINT FK_CLIENTE_PEDIDO FOREIGN KEY (cod_cliente) REFERENCES TB_CLIENTE(cod_cliente)
@@ -213,10 +224,7 @@ ADD CONSTRAINT FK_CLIENTE_PEDIDO FOREIGN KEY (cod_cliente) REFERENCES TB_CLIENTE
 
 
 
-ALTER TABLE TB_DETALLE_PEDIDOS
-ADD CONSTRAINT FK_DETALLE_SCOOTER FOREIGN KEY (cod_scooter) REFERENCES TB_SCOOTER(cod_scooter)
-ALTER TABLE TB_DETALLE_PEDIDOS
-ADD CONSTRAINT FK_DETALLE_ACCESORIO FOREIGN KEY (cod_accesorio) REFERENCES TB_ACCESORIO(cod_accesorio)
+
 ALTER TABLE TB_DETALLE_PEDIDOS
 ADD CONSTRAINT FK_DETALLE_BICICLETA FOREIGN KEY (cod_bicicleta) REFERENCES TB_BICICLETA(cod_bicicleta)
 ALTER TABLE TB_DETALLE_PEDIDOS
@@ -405,7 +413,7 @@ insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_tra
 
 
 
-
+select * from TB_CLIENTE
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 														/*GENERAR SP*/
 
@@ -421,7 +429,7 @@ create proc usp_Cliente_Consultar
 @dni char(8)
 as
 begin
-	select cod_cliente,nom_cliente,ape_cliente,dni_cliente,correo_cliente,cel_cliente
+	select cod_cliente,nom_cliente,ape_cliente,dni_cliente,correo_cliente,cel_cliente,direccion,nro_tarjeta,cod_seguridad_tarjeta
 	from TB_CLIENTE 
 	where  @dni= '' or	dni_cliente = @dni
 	
@@ -436,7 +444,7 @@ create proc usp_Cliente_Buscar
 @password_cliente varchar(20)
 as
 begin
-	select nom_cliente,ape_cliente,dni_cliente,correo_cliente,cel_cliente,password_cliente
+	select nom_cliente,ape_cliente,dni_cliente,correo_cliente,cel_cliente,password_cliente,direccion,nro_tarjeta,cod_seguridad_tarjeta
 	from TB_CLIENTE 
 	where correo_cliente=@correo_cliente and password_cliente=@password_cliente
 end 
@@ -449,15 +457,20 @@ create proc usp_Cliente_Insertar
 @dni_cliente char(8),
 @correo_cliente varchar(250),
 @cel_cliente char(9),
-@password_cliente varchar(20)
+@password_cliente varchar(20),
+@direc varchar(500),
+@nro_tarjeta varchar(200),
+@cod_seguridad varchar(200)
 as
 begin
-	insert into TB_CLIENTE(nom_cliente,ape_cliente,dni_cliente,correo_cliente,cel_cliente,password_cliente,estado_cliente)
-	Values(@nom_cliente,@ape_cliente,@dni_cliente,@correo_cliente,@cel_cliente,@password_cliente,1)
+	insert into TB_CLIENTE(nom_cliente,ape_cliente,dni_cliente,correo_cliente,cel_cliente,password_cliente,estado_cliente,direccion,nro_tarjeta,cod_seguridad_tarjeta)
+	Values(@nom_cliente,@ape_cliente,@dni_cliente,@correo_cliente,@cel_cliente,@password_cliente,1,@direc,@nro_tarjeta,@cod_seguridad)
 end 
 go
 
 
+
+/*
 create proc usp_Cliente_Actualizar
 @cod_cliente int,
 @nom_cliente varchar(200),
@@ -479,7 +492,6 @@ begin
 end 
 go
 
-
 create proc usp_Cliente_Find
 @cod_cliente int
 as
@@ -489,7 +501,7 @@ begin
 	where cod_cliente=@cod_cliente
 end 
 go
-
+*/
 
 -----------------------------------------------------------------------------
 /*** TABLA SCOOTER *****/
@@ -815,27 +827,57 @@ go
 
 
 
+-----------------------------------------------------------------------------
+/*** TABLA PEDIDO *****/
+
+create proc usp_Pedido_Listar
+as
+begin
+	select p.nro_pedido,p.fecha_pedido,p.total_pedido
+	from TB_PEDIDO p
+
+
+end
+go
+
+
+
+
+select * from TB_PEDIDO
+select * from TB_DETALLE_PEDIDOS
+go
 
 
 
 
 
 
+-----------------------------------------------------------------------------
+/*** TABLA BOLETA *****/
+create proc usp_Boleta_Listar
+as
+begin
+	SELECT B.nro_boleta,B.fecha_boleta,BI.descrp_bicicleta,DP.cantidad,P.total_pedido
+	FROM TB_BOLETA B
+	JOIN TB_PEDIDO P ON B.nro_pedido=P.nro_pedido
+	JOIN TB_DETALLE_PEDIDOS DP ON P.nro_pedido=DP.nro_pedido
+	JOIN TB_BICICLETA BI ON DP.cod_bicicleta=BI.cod_bicicleta
+end
+go
 
 
 
 
 
+create proc usp_Boleta_Insertar
+@nro_pedido int
+as
+begin
+	insert into TB_BOLETA (fecha_boleta,nro_pedido)
+	values (GETDATE(),@nro_pedido)
 
-
-
-
-
-
-
-
-
-
+end
+go
 
 
 

@@ -53,33 +53,50 @@
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.Celular)
             </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Direccion)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Tarjeta)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Codigo_Seguridad)
+            </th>
 
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.ID)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Apellido)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.DNI)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Correo)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Celular)
-                </td>
+        <tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.DNI)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Correo)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Celular)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Tarjeta)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Codigo_Seguridad)
+            </td>
 
-
-            </tr>
+        </tr>
         }
 
     </table>

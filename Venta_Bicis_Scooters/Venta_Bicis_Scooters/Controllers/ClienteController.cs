@@ -17,11 +17,13 @@ namespace Venta_Bicis_Scooters.Controllers
         // GET: Cliente
 
         ClienteCrudDao clientedao = new ClienteCrudDao();
-
+     
 
         //VISTA PRINCIPAL DE LA PAGINA
         public ActionResult PrincipalCliente()
         {
+            Session["logeo"] = false;
+
             if (Session["User"] != null)
             {
                 ViewBag.Apellido = Session["LastName"];
@@ -49,12 +51,15 @@ namespace Venta_Bicis_Scooters.Controllers
             Cliente c = clientedao.BuscarCliente(user, pass);
             if (c != null)
             {
+
                 Session["User"] = c.Correo.ToString();
                 Session["LastName"] = "Hola!!";
                 Session["FirstName"] = c.Nombre.ToString();
                 Session["logout"] = "Cerrar Sesion";
                 Session["perfil"] = "Mi perfil";
-                return RedirectToAction("PrincipalCliente", "Cliente");
+              
+                Session["logeo"] = true;
+                return RedirectToAction("Fin", "Producto");
             }
             else
             {
@@ -106,13 +111,13 @@ namespace Venta_Bicis_Scooters.Controllers
             }
         }
 
-        public ActionResult EditCliente(int id)
+        public ActionResult EditCliente(string user, string pass)
         {
             if (Session["User"] != null)
             {
-                clientedao.FindCliente(id);
+                clientedao.BuscarCliente(user, pass);
             }
-              return View(clientedao.FindCliente(id));
+              return View(clientedao.BuscarCliente(user, pass));
         }
 
         [HttpPost]
@@ -122,6 +127,7 @@ namespace Venta_Bicis_Scooters.Controllers
             {
                 if (ModelState.IsValid)
                 {
+
                     clientedao.UpdateCliente(cli);
                     return RedirectToAction("EditCliente");
                 }

@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Fin";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+<h2>Confirmar Compra</h2>
+
+
+
+<table>
+    <tr>
+
+        <th>  @Html.ActionLink("Cancelar", "PrincipalCliente", "Cliente", null, new { @class = "btn btn-danger" })</th>
+        <th>  @Html.ActionLink("Terminar Compra", "FinalizarCompra", "Producto", null, new { @class = "btn btn-success" })</th>
+    </tr>
+
+
+</table>
+
