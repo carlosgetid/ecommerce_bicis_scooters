@@ -947,7 +947,10 @@ namespace Venta_Bicis_Scooters.Controllers
 
 
 
-
+        public ActionResult Reporte()
+        {
+            return View();
+        }
 
 
 
