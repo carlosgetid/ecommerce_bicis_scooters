@@ -12,6 +12,8 @@ namespace Venta_Bicis_Scooters.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class BD_VENTAS_BICICLETA_SCOOTEREntities : DbContext
     {
@@ -27,7 +29,11 @@ namespace Venta_Bicis_Scooters.Models
     
         public virtual DbSet<TB_IMAGENES> TB_IMAGENES { get; set; }
         public virtual DbSet<TB_DETALLE_PEDIDOS> TB_DETALLE_PEDIDOS { get; set; }
-        public virtual DbSet<TB_CLIENTE> TB_CLIENTE { get; set; }
         public virtual DbSet<TB_PEDIDO> TB_PEDIDO { get; set; }
+    
+        public virtual ObjectResult<usp_Pedido_Listar_Result> usp_Pedido_Listar()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_Pedido_Listar_Result>("usp_Pedido_Listar");
+        }
     }
 }

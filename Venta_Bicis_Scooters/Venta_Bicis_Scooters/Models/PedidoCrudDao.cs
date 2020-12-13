@@ -29,7 +29,6 @@ namespace Venta_Bicis_Scooters.Models
                     Pedido emp = new Pedido()
                     {
                         ID = Convert.ToInt32(dr["nro_pedido"]),
-                        Cliente = Convert.ToInt32(dr["cod_cliente"]),
                         Fecha = dr["fecha_pedido"].ToString(),
                         Total = Convert.ToDecimal(dr["total_pedido"])
 

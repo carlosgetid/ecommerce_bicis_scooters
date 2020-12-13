@@ -123,7 +123,7 @@ GO
 
 CREATE TABLE TB_PEDIDO(
 nro_pedido int IDENTITY(1,1) primary key not null,
-cod_cliente int not null,
+--cod_cliente int not null,
 fecha_pedido date not null,
 sub_total decimal not null,
 igv_pedido decimal not null,
@@ -207,10 +207,10 @@ ALTER TABLE TB_SCOOTER
 ADD CONSTRAINT FK_SCOOTER_IMAGENES FOREIGN KEY (cod_imagen) REFERENCES TB_IMAGENES(cod_imagen)
 
 
-
+/*
 ALTER TABLE TB_PEDIDO
 ADD CONSTRAINT FK_CLIENTE_PEDIDO FOREIGN KEY (cod_cliente) REFERENCES TB_CLIENTE(cod_cliente)
-
+*/
 
 
 
@@ -825,7 +825,7 @@ go
 create proc usp_Pedido_Listar
 as
 begin
-	select p.nro_pedido,p.cod_cliente,p.fecha_pedido,p.total_pedido
+	select p.nro_pedido,p.fecha_pedido,p.total_pedido
 	from TB_PEDIDO p
 end
 go

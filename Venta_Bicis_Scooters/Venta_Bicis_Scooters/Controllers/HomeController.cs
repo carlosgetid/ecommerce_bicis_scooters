@@ -686,6 +686,7 @@ namespace Venta_Bicis_Scooters.Controllers
 
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateImagen(TB_IMAGENES obj)
         {
             if (Session["User"] != null)
@@ -700,6 +701,7 @@ namespace Venta_Bicis_Scooters.Controllers
                 if (archivoBase.ContentLength == 0)
                 {
                     ModelState.AddModelError("foto", "Es necesario seleccionar una Imagen.... ");
+
                     return View(obj);
                 }
                 else
@@ -707,6 +709,8 @@ namespace Venta_Bicis_Scooters.Controllers
                     if (archivoBase.FileName.EndsWith(".jpg"))
                     {
                         WebImage image = new WebImage(archivoBase.InputStream);
+                        obj.url_imagen = image.ToString();
+                       
                     }
                     else
                     {
@@ -730,7 +734,7 @@ namespace Venta_Bicis_Scooters.Controllers
 
 
         /*METODO PARA EXTRAER Y CONVERTIR LA SECUENCIA DE BYTES EN IMAGEN*/
-     /*   public ActionResult getImage(int id)
+        public ActionResult getImage(int id)
         {
             if (Session["User"] != null)
             {
@@ -739,10 +743,10 @@ namespace Venta_Bicis_Scooters.Controllers
 
 
                 TB_IMAGENES persona = db.TB_IMAGENES.Find(id);
-                byte[] byteImage = persona.url_imagen;
+                string byteImage = persona.url_imagen;
 
                 //convertir
-                MemoryStream memoryStream = new MemoryStream(byteImage);
+                MemoryStream memoryStream = new MemoryStream(Convert.ToInt32( byteImage));
                 Image image = Image.FromStream(memoryStream);
 
                 memoryStream = new MemoryStream();
@@ -759,7 +763,7 @@ namespace Venta_Bicis_Scooters.Controllers
             }
 
         }
-        */
+        
 
 
         /*EDIT*/
@@ -811,6 +815,7 @@ namespace Venta_Bicis_Scooters.Controllers
                     if (archivoBase.FileName.EndsWith(".jpg"))
                     {
                         WebImage image = new WebImage(archivoBase.InputStream);
+                        obj.url_imagen = image.ToString();
                     }
                     else
                     {
@@ -949,7 +954,17 @@ namespace Venta_Bicis_Scooters.Controllers
 
         public ActionResult Reporte()
         {
-            return View();
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View();
+
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
 

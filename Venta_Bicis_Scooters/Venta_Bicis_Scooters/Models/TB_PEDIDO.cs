@@ -21,13 +21,11 @@ namespace Venta_Bicis_Scooters.Models
         }
     
         public int nro_pedido { get; set; }
-        public int cod_cliente { get; set; }
         public System.DateTime fecha_pedido { get; set; }
         public decimal sub_total { get; set; }
         public decimal igv_pedido { get; set; }
         public decimal total_pedido { get; set; }
     
-        public virtual TB_CLIENTE TB_CLIENTE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TB_DETALLE_PEDIDOS> TB_DETALLE_PEDIDOS { get; set; }
     }

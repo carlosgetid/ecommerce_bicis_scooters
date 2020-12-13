@@ -37,7 +37,7 @@
                 @Html.LabelFor(model => model.url_imagen, htmlAttributes: new { @class = "control-label col-md-1 text-black-50" })
                 <div class="col-md-10">
 
-                    <img width="100" src="@Model.url_imagen" />
+                    <img width="100" src="@Url.Action("getImage","Home",new { id = Model.url_imagen })" />
                     <input type="file" name="imageload" style="opacity:1;position:relative;" />
                     @Html.ValidationMessageFor(model => model.url_imagen, "", new { @class = "text-danger" })
                 </div>

@@ -5,22 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="BD_VENTAS_BICICLETA_SCOOTERModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="TB_CLIENTE">
-          <Key>
-            <PropertyRef Name="cod_cliente" />
-          </Key>
-          <Property Name="cod_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nom_cliente" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="ape_cliente" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="dni_cliente" Type="char" MaxLength="8" Nullable="false" />
-          <Property Name="correo_cliente" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="cel_cliente" Type="char" MaxLength="9" Nullable="false" />
-          <Property Name="password_cliente" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="direccion" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="nro_tarjeta" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="cod_seguridad_tarjeta" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="estado_cliente" Type="bit" Nullable="false" />
-        </EntityType>
         <EntityType Name="TB_DETALLE_PEDIDOS">
           <Key>
             <PropertyRef Name="cod_detalle_pedido" />
@@ -44,24 +28,11 @@
             <PropertyRef Name="nro_pedido" />
           </Key>
           <Property Name="nro_pedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cod_cliente" Type="int" Nullable="false" />
           <Property Name="fecha_pedido" Type="date" Nullable="false" />
           <Property Name="sub_total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="igv_pedido" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="total_pedido" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
-        <Association Name="FK_CLIENTE_PEDIDO">
-          <End Role="TB_CLIENTE" Type="Self.TB_CLIENTE" Multiplicity="1" />
-          <End Role="TB_PEDIDO" Type="Self.TB_PEDIDO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TB_CLIENTE">
-              <PropertyRef Name="cod_cliente" />
-            </Principal>
-            <Dependent Role="TB_PEDIDO">
-              <PropertyRef Name="cod_cliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_DETALLE_PEDIDO_SCOOTER">
           <End Role="TB_PEDIDO" Type="Self.TB_PEDIDO" Multiplicity="1" />
           <End Role="TB_DETALLE_PEDIDOS" Type="Self.TB_DETALLE_PEDIDOS" Multiplicity="*" />
@@ -74,15 +45,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="usp_Pedido_Listar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="BD_VENTAS_BICICLETA_SCOOTERModelStoreContainer">
-          <EntitySet Name="TB_CLIENTE" EntityType="Self.TB_CLIENTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_DETALLE_PEDIDOS" EntityType="Self.TB_DETALLE_PEDIDOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_IMAGENES" EntityType="Self.TB_IMAGENES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_PEDIDO" EntityType="Self.TB_PEDIDO" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_CLIENTE_PEDIDO" Association="Self.FK_CLIENTE_PEDIDO">
-            <End Role="TB_CLIENTE" EntitySet="TB_CLIENTE" />
-            <End Role="TB_PEDIDO" EntitySet="TB_PEDIDO" />
-          </AssociationSet>
           <AssociationSet Name="FK_DETALLE_PEDIDO_SCOOTER" Association="Self.FK_DETALLE_PEDIDO_SCOOTER">
             <End Role="TB_PEDIDO" EntitySet="TB_PEDIDO" />
             <End Role="TB_DETALLE_PEDIDOS" EntitySet="TB_DETALLE_PEDIDOS" />
@@ -103,16 +70,12 @@
         <EntityContainer Name="BD_VENTAS_BICICLETA_SCOOTEREntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TB_IMAGENES" EntityType="Self.TB_IMAGENES" />
           <EntitySet Name="TB_DETALLE_PEDIDOS" EntityType="BD_VENTAS_BICICLETA_SCOOTERModel.TB_DETALLE_PEDIDOS" />
-          <EntitySet Name="TB_CLIENTE" EntityType="BD_VENTAS_BICICLETA_SCOOTERModel.TB_CLIENTE" />
           <EntitySet Name="TB_PEDIDO" EntityType="BD_VENTAS_BICICLETA_SCOOTERModel.TB_PEDIDO" />
-          <AssociationSet Name="FK_CLIENTE_PEDIDO" Association="BD_VENTAS_BICICLETA_SCOOTERModel.FK_CLIENTE_PEDIDO">
-            <End Role="TB_CLIENTE" EntitySet="TB_CLIENTE" />
-            <End Role="TB_PEDIDO" EntitySet="TB_PEDIDO" />
-          </AssociationSet>
           <AssociationSet Name="FK_DETALLE_PEDIDO_SCOOTER" Association="BD_VENTAS_BICICLETA_SCOOTERModel.FK_DETALLE_PEDIDO_SCOOTER">
             <End Role="TB_PEDIDO" EntitySet="TB_PEDIDO" />
             <End Role="TB_DETALLE_PEDIDOS" EntitySet="TB_DETALLE_PEDIDOS" />
           </AssociationSet>
+          <FunctionImport Name="usp_Pedido_Listar" ReturnType="Collection(BD_VENTAS_BICICLETA_SCOOTERModel.usp_Pedido_Listar_Result)" />
         </EntityContainer>
         <EntityType Name="TB_DETALLE_PEDIDOS">
           <Key>
@@ -125,48 +88,17 @@
           <Property Name="total" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="TB_PEDIDO" Relationship="BD_VENTAS_BICICLETA_SCOOTERModel.FK_DETALLE_PEDIDO_SCOOTER" FromRole="TB_DETALLE_PEDIDOS" ToRole="TB_PEDIDO" />
         </EntityType>
-        <EntityType Name="TB_CLIENTE">
-          <Key>
-            <PropertyRef Name="cod_cliente" />
-          </Key>
-          <Property Name="cod_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nom_cliente" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="ape_cliente" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="dni_cliente" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
-          <Property Name="correo_cliente" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="cel_cliente" Type="String" Nullable="false" MaxLength="9" FixedLength="true" Unicode="false" />
-          <Property Name="password_cliente" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="direccion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="nro_tarjeta" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="cod_seguridad_tarjeta" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="estado_cliente" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="TB_PEDIDO" Relationship="BD_VENTAS_BICICLETA_SCOOTERModel.FK_CLIENTE_PEDIDO" FromRole="TB_CLIENTE" ToRole="TB_PEDIDO" />
-        </EntityType>
         <EntityType Name="TB_PEDIDO">
           <Key>
             <PropertyRef Name="nro_pedido" />
           </Key>
           <Property Name="nro_pedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cod_cliente" Type="Int32" Nullable="false" />
           <Property Name="fecha_pedido" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="sub_total" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="igv_pedido" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="total_pedido" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <NavigationProperty Name="TB_CLIENTE" Relationship="BD_VENTAS_BICICLETA_SCOOTERModel.FK_CLIENTE_PEDIDO" FromRole="TB_PEDIDO" ToRole="TB_CLIENTE" />
           <NavigationProperty Name="TB_DETALLE_PEDIDOS" Relationship="BD_VENTAS_BICICLETA_SCOOTERModel.FK_DETALLE_PEDIDO_SCOOTER" FromRole="TB_PEDIDO" ToRole="TB_DETALLE_PEDIDOS" />
         </EntityType>
-        <Association Name="FK_CLIENTE_PEDIDO">
-          <End Type="BD_VENTAS_BICICLETA_SCOOTERModel.TB_CLIENTE" Role="TB_CLIENTE" Multiplicity="1" />
-          <End Type="BD_VENTAS_BICICLETA_SCOOTERModel.TB_PEDIDO" Role="TB_PEDIDO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TB_CLIENTE">
-              <PropertyRef Name="cod_cliente" />
-            </Principal>
-            <Dependent Role="TB_PEDIDO">
-              <PropertyRef Name="cod_cliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_DETALLE_PEDIDO_SCOOTER">
           <End Type="BD_VENTAS_BICICLETA_SCOOTERModel.TB_PEDIDO" Role="TB_PEDIDO" Multiplicity="1" />
           <End Type="BD_VENTAS_BICICLETA_SCOOTERModel.TB_DETALLE_PEDIDOS" Role="TB_DETALLE_PEDIDOS" Multiplicity="*" />
@@ -179,6 +111,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="usp_Pedido_Listar_Result">
+          <Property Type="Int32" Name="nro_pedido" Nullable="false" />
+          <Property Type="DateTime" Name="fecha_pedido" Nullable="false" />
+          <Property Type="Decimal" Name="total_pedido" Nullable="false" Precision="18" Scale="0" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -205,23 +142,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TB_CLIENTE">
-            <EntityTypeMapping TypeName="BD_VENTAS_BICICLETA_SCOOTERModel.TB_CLIENTE">
-              <MappingFragment StoreEntitySet="TB_CLIENTE">
-                <ScalarProperty Name="estado_cliente" ColumnName="estado_cliente" />
-                <ScalarProperty Name="cod_seguridad_tarjeta" ColumnName="cod_seguridad_tarjeta" />
-                <ScalarProperty Name="nro_tarjeta" ColumnName="nro_tarjeta" />
-                <ScalarProperty Name="direccion" ColumnName="direccion" />
-                <ScalarProperty Name="password_cliente" ColumnName="password_cliente" />
-                <ScalarProperty Name="cel_cliente" ColumnName="cel_cliente" />
-                <ScalarProperty Name="correo_cliente" ColumnName="correo_cliente" />
-                <ScalarProperty Name="dni_cliente" ColumnName="dni_cliente" />
-                <ScalarProperty Name="ape_cliente" ColumnName="ape_cliente" />
-                <ScalarProperty Name="nom_cliente" ColumnName="nom_cliente" />
-                <ScalarProperty Name="cod_cliente" ColumnName="cod_cliente" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TB_PEDIDO">
             <EntityTypeMapping TypeName="BD_VENTAS_BICICLETA_SCOOTERModel.TB_PEDIDO">
               <MappingFragment StoreEntitySet="TB_PEDIDO">
@@ -229,11 +149,19 @@
                 <ScalarProperty Name="igv_pedido" ColumnName="igv_pedido" />
                 <ScalarProperty Name="sub_total" ColumnName="sub_total" />
                 <ScalarProperty Name="fecha_pedido" ColumnName="fecha_pedido" />
-                <ScalarProperty Name="cod_cliente" ColumnName="cod_cliente" />
                 <ScalarProperty Name="nro_pedido" ColumnName="nro_pedido" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_Pedido_Listar" FunctionName="BD_VENTAS_BICICLETA_SCOOTERModel.Store.usp_Pedido_Listar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BD_VENTAS_BICICLETA_SCOOTERModel.usp_Pedido_Listar_Result">
+                <ScalarProperty Name="nro_pedido" ColumnName="nro_pedido" />
+                <ScalarProperty Name="fecha_pedido" ColumnName="fecha_pedido" />
+                <ScalarProperty Name="total_pedido" ColumnName="total_pedido" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
